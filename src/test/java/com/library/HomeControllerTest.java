@@ -1,6 +1,8 @@
 package com.library;
 
 import com.library.controllers.HomeController;
+import com.library.controllers.ProjectController;
+import com.library.controllers.RegistrationController;
 import org.junit.Test;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -17,4 +19,14 @@ public class HomeControllerTest {
         MockMvc mockMvc=standaloneSetup(controller).build();
         mockMvc.perform(get("/")).andExpect(view().name("index"));
     }
+    @Test
+    public void shouldShowRegistratrion() throws Exception
+    {
+        RegistrationController controller=new RegistrationController();
+        MockMvc mockMvc=standaloneSetup(controller).build();
+        mockMvc.perform(get("/library/register"))
+                .andExpect(view().name("registerForm"));
+    }
+
+
 }
