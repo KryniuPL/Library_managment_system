@@ -1,51 +1,40 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html lang="pl">
-	<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-		
-		<!-- Stylesheets -->
-		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-		<link rel="stylesheet" type="text/css" href="../../../../../../Library_managment_system-jsp-test/src/main/webapp/web-resources/libstyle.css">
-		<title>Strona rejestracji</title>
-	</head>
-	<body>
-		<div class="container">
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="sf" %>
+<%@ page session="false" %>
+<html>
+<head>
+    <title>Spitter</title>
+    <link rel="stylesheet" type="text/css"
+          href="<c:url value="/home/kryniu/Desktop/library_application/src/main/webapp/web-resources/libstyle.css" />" >
+</head>
+<body>
+<h1>Register</h1>
 
-		<div class="page-header text-center">
-			<h1>Strona rejestracji biblioteki</h1>
-		</div>
+<%--@elvariable id="user" type="text"--%>
+<sf:form method="POST" commandName="user" >
+    <sf:errors path="*" element="div" cssClass="errors" />
 
-		<div id="registerForm" class="jumbotron jumbotron-form">
-			<form method="POST">
-					Imię<br>
-					<input type="text" name="name">
-					<br>
-					Nazwisko<br>
-					<input type="text" name="surname">
-					<br>
-					Nazwa użytkownika<br>
-					<input type="text" name="username">
-					<br>
-					Hasło<br>
-					<input type="password" name="password">
-					<br>
-					<input type="submit" class="btn btn-success btn-login" value="Zarejestruj">
-				</form>
-			</div>
-		</div>
+    <sf:label path="firstName"
+              cssErrorClass="error">First Name</sf:label>:
+    <sf:input path="firstName" cssErrorClass="error" /><br/>
 
+    <sf:label path="lastName"
+              cssErrorClass="error">Last Name</sf:label>:
+    <sf:input path="lastName" cssErrorClass="error" /><br/>
 
-		<footer class="footer">
-			<div class="container container-footer">
-				<span class="text-muted">Projekt IP 2017 © LibMS</span>
-			</div>
-		</footer>
-		
-		
-		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
-		</script>
+    <sf:label path="email"
+              cssErrorClass="error">Email</sf:label>:
+    <sf:input path="email" cssErrorClass="error" /><br/>
 
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous">
-		</script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous">
-		</script>
+    <sf:label path="username"
+              cssErrorClass="error">Username</sf:label>:
+    <sf:input path="username" cssErrorClass="error" /><br/>
+
+    <sf:label path="password"
+              cssErrorClass="error">Password</sf:label>:
+    <sf:password path="password" cssErrorClass="error" /><br/>
+
+    <input type="submit" value="Register" />
+</sf:form>
+</body>
+</html>
