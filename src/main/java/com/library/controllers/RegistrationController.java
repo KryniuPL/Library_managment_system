@@ -19,6 +19,14 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 public class RegistrationController {
 
     private UserRepository userRepository;
+
+    public RegistrationController()
+    {
+
+    }
+
+
+
     /*
     @Autowired
     public RegistrationController(UserRepository userRepository)

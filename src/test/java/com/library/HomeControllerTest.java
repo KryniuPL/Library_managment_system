@@ -19,14 +19,7 @@ public class HomeControllerTest {
         MockMvc mockMvc=standaloneSetup(controller).build();
         mockMvc.perform(get("/")).andExpect(view().name("index"));
     }
-    @Test
-    public void shouldShowRegistratrion() throws Exception
-    {
-        RegistrationController controller=new RegistrationController();
-        MockMvc mockMvc=standaloneSetup(controller).build();
-        mockMvc.perform(get("/library/register"))
-                .andExpect(view().name("registerForm"));
-    }
+
 
 
 }
