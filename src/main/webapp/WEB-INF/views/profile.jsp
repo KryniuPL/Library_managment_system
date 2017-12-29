@@ -8,7 +8,8 @@
 <body>
 <h1>Your Profile</h1>
 <c:out value="${user.username}" /><br/>
-<c:out value="${user.firstName}" /> <c:out value="${user.lastName}" /><br/>
+<c:out value="${user.firstName}" />
+<c:out value="${user.lastName}" /><br/>
 <c:out value="${user.email}" />
 </body>
 </html>

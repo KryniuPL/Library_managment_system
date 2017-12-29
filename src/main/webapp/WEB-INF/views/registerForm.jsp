@@ -27,7 +27,7 @@
 					<input type="text" name="username">
 					<br>
 					Hasło<br>
-					<input type="text" name="password">
+					<input type="password" name="password">
 					<br>
 					<input type="submit" class="btn btn-success btn-login" value="Zarejestruj">
 				</form>
