@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestPart;
 
 import javax.jws.soap.SOAPBinding;
 import javax.validation.Valid;
@@ -45,7 +46,7 @@ public class RegistrationController {
     }
 
     @RequestMapping(value = "/register",method = POST)
-    public String processRegistration(@Valid User user, Errors errors)
+    public String processRegistration(@Valid User user, Errors errors, @RequestPart("uploadImage") byte[] profilePicture)
     {
         if(errors.hasErrors())
         {
