@@ -36,7 +36,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     public MessageSource messageSource()
     {
         ReloadableResourceBundleMessageSource messageSource= new ReloadableResourceBundleMessageSource();
-        messageSource.setBasename("com/library/controllers/ValidationMessages_en.properties");
+        messageSource.setBasename("ValidationMessages_en.properties");
         messageSource.setCacheSeconds(5);
         return messageSource;
     }

@@ -17,7 +17,7 @@ public class User {
     private String password;
 
     @NotNull
-    @Size(min=2, max=30,message = "{firstNamesize}")
+    @Size(min=2, max=30,message = "{firstName.size}")
     private String firstName;
 
     @NotNull
