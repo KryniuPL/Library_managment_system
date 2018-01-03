@@ -45,7 +45,7 @@ public class RegistrationController {
     }
 
     @RequestMapping(value = "/register",method = POST)
-    public String processRegistratrion(@Valid User user, Errors errors)
+    public String processRegistration(@Valid User user, Errors errors)
     {
         if(errors.hasErrors())
         {

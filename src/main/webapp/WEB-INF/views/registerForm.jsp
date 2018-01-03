@@ -3,7 +3,7 @@
 <%@ page session="false" %>
 <html>
 <head>
-    <title>Spitter</title>
+    <title>Library Managment System</title>
     <link rel="stylesheet" type="text/css"
           href="<c:url value="/home/kryniu/Desktop/library_application/src/main/webapp/web-resources/libstyle.css" />" >
 </head>
