@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Zaloguj się do IAM</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+
+</head>
+<body>
+
+<div class="container" ng-app="app">
+
+    <h3 style="color:blue">Biblioteka logowanie: </h3>
+
+    <form name='f' th:action='@{/login}' method='POST'>
+        <table>
+            <tr>
+                <td>Nazwa użytkownika:</td>
+                <td><input type="text" name="username" value="" /> </td>
+            </tr>
+            <tr>
+                <td>Hasło:</td>
+                <td><input type="password" name="password" /> </td>
+            </tr>
+            <tr>
+                <td>Pamietaj mnie:</td>
+                <td>
+                    <input id="remember_me" name="remember-me" type="checkbox" checked="checked" />
+                </td>
+
+            </tr>
+            <tr>
+                <td colspan="2"><input name="submit" type="submit" value="Zaloguj"/> </td>
+            </tr>
+        </table>
+    </form>
+
+
+
+</div>
+</body>
+</html>

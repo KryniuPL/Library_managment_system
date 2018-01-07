@@ -33,19 +33,9 @@
     <sf:label path="password"
               cssErrorClass="error">Password</sf:label>:
     <sf:password path="password" cssErrorClass="error" /><br/>
-    <h3>Photo Upload:</h3>
-    Select a photo to upload: <br />
-    <form action="UploadImage" method="post" enctype="multipart/form-data">
-        <input type="file" name="UploadImage" accept="image/jpeg,image/png,image/gif" size="50" />
-        <br />
-        <input type="submit" value="Upload Photo" />
-    </form>
 
-    <%--
-    <sf:label path="profilePicture" cssErrorClass="error">Profile Picture</sf:label>:
-    <sf:input path="profilePicture" type="file" accept="image/jpeg.image/png/image/gif"/><br/>
-    --%>
     <input type="submit" value="Register" />
+
 </sf:form>
 </body>
 </html>

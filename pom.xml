@@ -84,7 +84,7 @@
 		<!-- https://mvnrepository.com/artifact/org.thymeleaf/thymeleaf-spring3 -->
 		<dependency>
 			<groupId>org.thymeleaf</groupId>
-			<artifactId>thymeleaf-spring3</artifactId>
+			<artifactId>thymeleaf-spring5</artifactId>
 			<version>1.0.1</version>
 		</dependency>
 

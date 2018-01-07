@@ -46,7 +46,7 @@ public class RegistrationController {
     }
 
     @RequestMapping(value = "/register",method = POST)
-    public String processRegistration(@Valid User user, Errors errors, @RequestPart("uploadImage") byte[] profilePicture)
+    public String processRegistration(@Valid User user, Errors errors)
     {
         if(errors.hasErrors())
         {
