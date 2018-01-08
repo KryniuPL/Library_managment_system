@@ -93,8 +93,13 @@
 			<artifactId>thymeleaf-spring4</artifactId>
 			<version>3.0.9.RELEASE</version>
 		</dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>4.3.13.RELEASE</version>
+        </dependency>
 
-	</dependencies>
+    </dependencies>
 
 
 	<build>
