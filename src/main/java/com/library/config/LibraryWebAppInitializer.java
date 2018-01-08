@@ -4,7 +4,8 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 
 
 
-public class LibraryWebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer{
+public class LibraryWebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer
+{
 
     @Override
     protected String[] getServletMappings() {
