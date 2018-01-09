@@ -16,7 +16,7 @@
 
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
-            <h1>Login page</h1>
+            <h1>Rejestracja użytkownika</h1>
             <form th:action="@{/login}" method="post">
                 <div th:if="${param.error}">
                     <div class="alert alert-danger">
@@ -73,10 +73,10 @@
                     <div class="row">
                         <div class="col-sm-6 col-sm-offset-3">
                             <input type="submit"
-                                   name="login-submit"
-                                   id="login-submit"
+                                   name="register-submit"
+                                   id="register-submit"
                                    class="form-control btn btn-info"
-                                   value="Log In"/>
+                                   value="Register"/>
                         </div>
                     </div>
                 </div>
