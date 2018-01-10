@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.sql.DataSource;
 
@@ -12,6 +13,7 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {
 
 
    public static final String DEF_USERS_BY_USERNAME_QUERY="select username,password,true"+"from user where username=?";
+   public static final String DEF_AUTHORITIES_BY_USERNAME_QUERY="select username,role from user where username=?";
 
    @Autowired
    DataSource dataSource;
@@ -33,7 +35,9 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {
               .withUser("admin").password("password").roles("USER","ADMIN");
       authorization.jdbcAuthentication()
                    .dataSource(dataSource)
-                   .usersByUsernameQuery(DEF_USERS_BY_USERNAME_QUERY);
+                   .usersByUsernameQuery(DEF_USERS_BY_USERNAME_QUERY)
+                   .authoritiesByUsernameQuery(DEF_AUTHORITIES_BY_USERNAME_QUERY)
+                   .passwordEncoder(new BCryptPasswordEncoder());
    }
 
 
