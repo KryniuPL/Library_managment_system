@@ -25,6 +25,8 @@ public class DatabaseConfig {
     @Autowired
     private Environment environment;
 
+
+
     @Primary
     @Bean(name="mysqlDB")
     public DataSource dataSource()

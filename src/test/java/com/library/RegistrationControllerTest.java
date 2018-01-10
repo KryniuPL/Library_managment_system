@@ -10,11 +10,11 @@ import com.library.model.User;
 import com.library.repository.UserRepository;
 import org.junit.Test;
 import org.springframework.test.web.servlet.MockMvc;
-;
+
 
 public class RegistrationControllerTest {
 
-    /*
+
     @Test
     public void shouldShowRegistratrion() throws Exception
     {
@@ -23,7 +23,7 @@ public class RegistrationControllerTest {
         mockMvc.perform(get("/library/register"))
                 .andExpect(view().name("registerForm"));
     }
-
+/*
     @Test
     public void shouldProcessRegistration() throws Exception{
         UserRepository mockRepository=mock(UserRepository.class);
