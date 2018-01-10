@@ -1,13 +1,14 @@
 package com.library.repository;
 
 import com.library.model.User;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
 
-public interface UserRepository {
-    List<User> findUsers(long max,int count);
+public interface UserRepository extends JpaRepository<User, Long>{
 
-    User save(User user);
+    /*
+    Custom queries below
+     */
 
     User findByUsername(String username);
 }
