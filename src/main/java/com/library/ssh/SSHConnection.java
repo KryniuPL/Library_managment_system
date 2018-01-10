@@ -2,7 +2,7 @@ package com.library.ssh;
 
 import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.Session;
-
+/*
 public class SSHConnection {
 
     private final static String S_PASS_PHRASE="Zybgfad88#!";
@@ -29,3 +29,4 @@ public class SSHConnection {
 
 
 }
+*/

@@ -23,7 +23,7 @@ public class ProjectController {
     @RequestMapping(method = RequestMethod.GET)
     public String users(Model model)
     {
-        model.addAttribute(userRepository.findUsers(Long.MAX_VALUE,20));
+        model.addAttribute(userRepository.findOne(1L));
         return "users";
     }
 }
