@@ -42,8 +42,11 @@ public class BooksController {
     }
 
     @RequestMapping(value = "/allbooks", method = RequestMethod.GET)
-    public @ResponseBody
-    List<Book> getAllBooks() {
-        return bookRepository.findAll();
+    public String getAllBooks(Model model) {
+        List<Book> bookList = bookRepository.findAll();
+
+        System.out.println(bookList.size());
+        model.addAttribute("bookList",bookList);
+        return "allbooks";
     }
 }
