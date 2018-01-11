@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Dodawanie ksiazki</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+    <body>
+        <h1>Form</h1>
+
+    <!--/*@thymesVar id="book" type="com.library.model.Book"*/-->
+    <!--/*@thymesVar id="author" type="String"*/-->
+    <!--/*@thymesVar id="name" type="String"*/-->
+
+        <form action="#" th:action="@{addbook}" th:object="${book}" method="post">
+            <p>Autor: <input type="text" th:field="*{author}" /></p>
+            <p>Nazwa: <input type="text" th:field="*{name}" /></p>
+            <p><input type="submit" value="Dodaj" /> <input type="reset" value="Resetuj" /></p>
+        </form>
+    </body>
+</html>
