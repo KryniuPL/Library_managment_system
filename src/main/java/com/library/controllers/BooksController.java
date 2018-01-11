@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -35,8 +34,11 @@ public class BooksController {
         }
         model.addAttribute("author",book.getAuthor());
         model.addAttribute("name",book.getName());
+        model.addAttribute("price",book.getName());
+        model.addAttribute("price",book.getStatus());
+        book.setStatus("free");
         bookRepository.save(book);
-        return "allbooks";
+        return "redirect:/allbooks";
     }
 
     @RequestMapping(value = "/allbooks", method = RequestMethod.GET)
