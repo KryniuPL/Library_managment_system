@@ -15,14 +15,6 @@ import org.springframework.test.web.servlet.MockMvc;
 public class RegistrationControllerTest {
 
 
-    @Test
-    public void shouldShowRegistratrion() throws Exception
-    {
-        RegistrationController controller=new RegistrationController();
-        MockMvc mockMvc=standaloneSetup(controller).build();
-        mockMvc.perform(get("/library/register"))
-                .andExpect(view().name("registerForm"));
-    }
 /*
     @Test
     public void shouldProcessRegistration() throws Exception{
