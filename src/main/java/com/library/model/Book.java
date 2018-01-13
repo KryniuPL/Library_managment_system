@@ -11,17 +11,17 @@ public class Book {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer bookID;
+    private Long bookID;
     private String name;
     private String author;
     private Integer price;
     private String status;
 
-    public Integer getBookID() {
+    public Long getBookID() {
         return bookID;
     }
 
-    public void setBookID(Integer bookID) {
+    public void setBookID(Long bookID) {
         this.bookID = bookID;
     }
 

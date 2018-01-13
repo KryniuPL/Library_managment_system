@@ -24,7 +24,6 @@
         <table class="table table-bordered" border="1" id="dataTable" cellspacing="0">
             <thead>
             <tr>
-                <th>ID</th>
                 <th>Nazwa</th>
                 <th>Autor</th>
                 <th>Cena</th>
@@ -37,13 +36,12 @@
             <!--/*@thymesVar id="book" type="com.library.model.Book"*/-->
             <!--/*@thymesVar id="bookList" type="com.library.model.Book"*/-->
             <tr th:each="book : ${bookList}">
-                <td th:text="${book.bookID}"></td>
                 <td th:text="${book.name}"></td>
                 <td th:text="${book.author}"></td>
                 <td th:text="${book.price}"></td>
                 <td th:text="${book.status}"></td>
-                <td><a href="">Aktualizuj</a></td>
-                <td><a href="/deletebook/ + ${book.bookID}">Usun</a></td>
+                <td><a th:href="'/updatebook/' + ${book.bookID}">Aktualizuj</a></td>
+                <td><a th:href="'/deletebook/' + ${book.bookID}">Usun</a></td>
             </tr>
             </tbody>
         </table>

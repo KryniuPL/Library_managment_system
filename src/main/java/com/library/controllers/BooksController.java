@@ -7,10 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -48,7 +45,7 @@ public class BooksController {
         return "allbooks";
     }
 
-    //Doesn't work yet
+    //Sometimes mapping redirects to: /allbooks/allbooks/search
     @RequestMapping(value="/allbooks/search", method = RequestMethod.POST)
     public String searchBooks(@Valid @ModelAttribute("phrase") String phrase, Model model){
         List<Book> bookList = bookRepository.findPhrase(phrase);
@@ -59,9 +56,25 @@ public class BooksController {
         return "allbooks";
     }
 
-    @RequestMapping(value = "/deletebook", method = RequestMethod.POST)
-    public String deleteBook(@RequestParam("bookID") long bookID){
-        bookRepository.delete(bookID);
+    @RequestMapping(value = "/deletebook/{id}", method = RequestMethod.GET)
+    public String deleteBook(@PathVariable("id") Long id){
+        bookRepository.delete(id);
+        return "redirect:/allbooks";
+    }
+
+    @RequestMapping(value = "/updatebook/{id}", method = RequestMethod.GET)
+    public String updateBook(@PathVariable("id") Long id, Model model){
+        model.addAttribute("book",bookRepository.findOne(id));
+        return "updatebookform";
+    }
+
+    @RequestMapping(value = "/updatebook/save", method = RequestMethod.POST)
+    public String saveUpdateBook(@Valid @ModelAttribute("book") Book book, Model model){
+        model.addAttribute("author",book.getAuthor());
+        model.addAttribute("name",book.getName());
+        model.addAttribute("price",book.getName());
+        model.addAttribute("price",book.getStatus());
+        bookRepository.update(book.getAuthor(),book.getName(),book.getPrice(),book.getBookID());
         return "redirect:/allbooks";
     }
 }
