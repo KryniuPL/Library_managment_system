@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
     <body>
-        <h1>Form</h1>
+        <h1>Dodaj</h1>
 
         <!--/*@thymesVar id="book" type="com.library.model.Book"*/-->
         <!--/*@thymesVar id="author" type="String"*/-->
@@ -15,7 +15,7 @@
         <form action="#" th:action="@{addbook}" th:object="${book}" method="post">
             <p>Autor: <input type="text" id="author" title="Autor" th:field="*{author}" /></p>
             <p>Nazwa: <input type="text" id="name" title="Nazwa" th:field="*{name}" /></p>
-            <p>Nazwa: <input type="number" id="price" title="Cena" th:field="*{price}" /></p>
+            <p>Cena: <input type="number" id="price" title="Cena" th:field="*{price}" /></p>
             <p><input type="submit" value="Dodaj" /> <input type="reset" value="Resetuj" /></p>
         </form>
     </body>

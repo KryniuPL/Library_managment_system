@@ -10,9 +10,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.swing.text.html.FormView;
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -44,9 +46,24 @@ public class BooksController {
     @RequestMapping(value = "/allbooks", method = RequestMethod.GET)
     public String getAllBooks(Model model) {
         List<Book> bookList = bookRepository.findAll();
-
-        System.out.println(bookList.size());
         model.addAttribute("bookList",bookList);
         return "allbooks";
+    }
+
+    //Doesn't work yet
+    @RequestMapping(value="/allbooks/search", method = RequestMethod.POST)
+    public String searchBooks(@Valid @ModelAttribute("phrase") String phrase, Model model){
+        List<Book> bookList = bookRepository.findPhrase(phrase);
+        if(bookList.size() == 0)
+            return "redirect:/allbooks";
+
+        model.addAttribute("bookList",bookList);
+        return "allbooks";
+    }
+
+    @RequestMapping(value = "/deletebook", method = RequestMethod.POST)
+    public String deleteBook(@RequestParam("bookID") long bookID){
+        bookRepository.delete(bookID);
+        return "redirect:/allbooks";
     }
 }

@@ -7,35 +7,46 @@
     <title>Zbiór ksiąg</title>
 </head>
 <body>
-<h1>
-    Show Values
-</h1>
+    <h1>
+        Księgozbiór
+    </h1>
 
-<table class="table table-bordered" border="1" id="dataTable" cellspacing="0">
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th>Nazwa</th>
-        <th>Autor</th>
-        <th>Cena</th>
-        <th>Status</th>
-        <th>Aktualizuj</th>
-        <th>Usun</th>
-    </tr>
-    </thead>
-    <tbody>
-    <!--/*@thymesVar id="book" type="com.library.model.Book"*/-->
-    <!--/*@thymesVar id="bookList" type="com.library.model.Book"*/-->
-    <tr th:each="book : ${bookList}">
-        <td th:text="${book.bookID}"></td>
-        <td th:text="${book.name}"></td>
-        <td th:text="${book.author}"></td>
-        <td th:text="${book.price}"></td>
-        <td th:text="${book.status}"></td>
-        <td><a href="">Aktualizuj</a></td>
-        <td><a href="">Usun</a></td>
-    </tr>
-    </tbody>
-</table>
+    <div>
+        <form action="#" th:action="@{allbooks/search}" method="post">
+            <p>Wyszukaj: <input type="text" id="phrase" name="phrase" title="Wyszukaj..." /></p>
+            <p><input type="submit" value="Wyszukaj" /></p>
+        </form>
+    </div>
+
+    <br>
+
+    <div>
+        <table class="table table-bordered" border="1" id="dataTable" cellspacing="0">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nazwa</th>
+                <th>Autor</th>
+                <th>Cena</th>
+                <th>Status</th>
+                <th>Aktualizuj</th>
+                <th>Usun</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!--/*@thymesVar id="book" type="com.library.model.Book"*/-->
+            <!--/*@thymesVar id="bookList" type="com.library.model.Book"*/-->
+            <tr th:each="book : ${bookList}">
+                <td th:text="${book.bookID}"></td>
+                <td th:text="${book.name}"></td>
+                <td th:text="${book.author}"></td>
+                <td th:text="${book.price}"></td>
+                <td th:text="${book.status}"></td>
+                <td><a href="">Aktualizuj</a></td>
+                <td><a href="/deletebook/ + ${book.bookID}">Usun</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>
