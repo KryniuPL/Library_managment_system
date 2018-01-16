@@ -12,12 +12,14 @@ import org.springframework.stereotype.Service;
 import java.util.Arrays;
 import java.util.HashSet;
 
-@Service
+@Service("userService")
 public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private RoleRepository roleRepository;
 
     @Override
     public User findByUsername(String username) {
@@ -25,8 +27,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void saveUser(User user) {
-
+    public void saveUser(User user)
+    {
+        user.setPassword(user.getPassword());
+        Role userRole=roleRepository.findByName("ADMIN");
+        user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
+        userRepository.save(user);
     }
 
 

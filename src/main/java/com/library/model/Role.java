@@ -5,9 +5,6 @@ import javax.persistence.*;
 
 @Entity
 public class Role {
-
-
-
     private Integer roleID;
     private String name;
 

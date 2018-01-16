@@ -38,6 +38,8 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {
               .and()
               .formLogin().loginPage("/login")
               .defaultSuccessUrl("/home",true)
+              .usernameParameter("username")
+              .passwordParameter("password")
               .and()
               .rememberMe().tokenValiditySeconds(2419200).key("iamKey")
               .and()

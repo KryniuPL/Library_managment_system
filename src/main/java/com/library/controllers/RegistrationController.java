@@ -22,45 +22,13 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 public class RegistrationController {
 
     private UserRepository userRepository;
+
 /*
-    @Autowired
-    public RegistrationController(UserRepository userRepository)
-    {
-        this.userRepository=userRepository;
-    }
-*/
-
-
-    /*
-    @Autowired
-    public RegistrationController(UserRepository userRepository)
-    {
-        this.userRepository=userRepository;
-    }
-    */
     @RequestMapping(value = "/register",method = GET)
     public String showRegistrationForm(Model model)
     {
         model.addAttribute(new User());
         return "registerForm";
     }
-
-    @RequestMapping(value = "/register",method = POST)
-    public String processRegistration(@Valid User user, Errors errors)
-    {
-        if(errors.hasErrors())
-        {
-            return "registerForm";
-        }
-        userRepository.save(user);
-        return "redirect:/user/"+user.getUsername();
-    }
-
-    @RequestMapping(value = "/{username}",method = GET)
-    public String showUserProfile(@PathVariable String username, Model model)
-    {
-        User user=userRepository.findByUsername(username);
-        model.addAttribute(user);
-        return "profile";
-    }
+*/
 }
