@@ -11,6 +11,7 @@ public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int roleID;
+    private String username;
     private String role;
 
     public int getRoleID() {
@@ -21,6 +22,14 @@ public class Role {
         this.roleID = roleID;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public String getRole() {
         return role;
     }
@@ -29,3 +38,4 @@ public class Role {
         this.role = role;
     }
 }
+

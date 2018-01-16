@@ -25,7 +25,7 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {
               .and()
               .formLogin()
               .loginPage("/login")
-               .permitAll();
+              .permitAll();
    }
    @Override
    protected void configure(AuthenticationManagerBuilder authorization) throws Exception
@@ -34,10 +34,10 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {
               .withUser("user").password("password").roles("USER").and()
               .withUser("admin").password("password").roles("USER","ADMIN");
       authorization.jdbcAuthentication()
-                   .dataSource(dataSource)
-                   .usersByUsernameQuery(DEF_USERS_BY_USERNAME_QUERY)
-                   .authoritiesByUsernameQuery(DEF_AUTHORITIES_BY_USERNAME_QUERY)
-                   .passwordEncoder(new BCryptPasswordEncoder());
+              .dataSource(dataSource)
+              .usersByUsernameQuery(DEF_USERS_BY_USERNAME_QUERY)
+              .authoritiesByUsernameQuery(DEF_AUTHORITIES_BY_USERNAME_QUERY)
+              .passwordEncoder(new BCryptPasswordEncoder());
    }
 
 

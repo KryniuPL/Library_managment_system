@@ -1,31 +1,25 @@
 package com.library.model;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import org.hibernate.validator.constraints.Email;
-
+import java.util.HashSet;
 import java.util.Set;
 
 
 @Entity
 public class User{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+
     private Integer userID;
     private String firstname;
     private String surname;
     private String username;
     private String password;
     private String email;
-    private int active;
-
-    @ManyToMany(cascade = CascadeType.ALL)
-    //@JoinTable(name="user_role",joinColumns = @JoinColumn(name="userID"),inverseJoinColumns = @JoinColumn(name="roleID"))
-    private Set<Role> roles;
+    private Integer enabled;
 
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public Integer getUserID() {
         return userID;
     }
@@ -74,23 +68,6 @@ public class User{
         this.email = email;
     }
 
-    public Set<Role> getRoles()
-    {
-        return roles;
-    }
-
-    public void setRoles(Set<Role> roles)
-    {
-        this.roles=roles;
-    }
-
-    public int getActive() {
-        return active;
-    }
-
-    public void setActive(int active) {
-        this.active = active;
-    }
 
 }
 
