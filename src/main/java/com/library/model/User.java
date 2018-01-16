@@ -2,6 +2,7 @@ package com.library.model;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 
@@ -15,8 +16,7 @@ public class User{
     private String username;
     private String password;
     private String email;
-    private Integer enabled;
-
+    private Set<Role> roles=new HashSet<>(0);
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -67,6 +67,17 @@ public class User{
     public void setEmail(String email) {
         this.email = email;
     }
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
+
 
 
 }
