@@ -1,5 +1,8 @@
 package com.library.model;
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.List;
@@ -11,10 +14,15 @@ public class User{
 
 
     private Integer userID;
+    @NotEmpty(message = "*Please provide your firstname")
     private String firstname;
+    @NotEmpty(message = "*Please provide your lastname")
     private String surname;
+    @NotEmpty(message = "*Please provide your login name")
     private String username;
+    @NotEmpty(message = "*Please provide your password")
     private String password;
+    @Email(message = "*Please provide a valid email")
     private String email;
     private Set<Role> roles=new HashSet<>(0);
 

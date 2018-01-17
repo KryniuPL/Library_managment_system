@@ -21,6 +21,9 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private RoleRepository roleRepository;
 
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
     @Override
     public User findByUsername(String username) {
         return userRepository.findByUsername(username);
@@ -29,7 +32,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void saveUser(User user)
     {
-        user.setPassword(user.getPassword());
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         Role userRole=roleRepository.findByName("ADMIN");
         user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
         userRepository.save(user);

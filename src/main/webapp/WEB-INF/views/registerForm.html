@@ -33,10 +33,10 @@
 
                 <div class="form-group">
                     <div class="col-sm-9">
+                        <label	th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
+                                  class="validation-message"></label>
                         <input type="password" th:field="*{password}"
-                               placeholder="Password" class="form-control" /> <label
-                            th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
-                            class="validation-message"></label>
+                               placeholder="Password" class="form-control" />
                     </div>
                 </div>
 
