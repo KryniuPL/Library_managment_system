@@ -10,7 +10,7 @@ import java.util.Set;
 
 
 @Entity
-public class User{
+public class User {
 
 
     private Integer userID;
@@ -25,7 +25,8 @@ public class User{
     @Email(message = "*Please provide a valid email")
     @NotEmpty(message = "*Please provide an email")
     private String email;
-    private Set<Role> roles=new HashSet<>(0);
+    private int active;
+    private Set<Role> roles = new HashSet<>(0);
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -77,6 +78,14 @@ public class User{
         this.email = email;
     }
 
+    public int getActive() {
+        return active;
+    }
+
+    public void setActive(int active) {
+        this.active = active;
+    }
+
     @ManyToMany(cascade = CascadeType.ALL)
     public Set<Role> getRoles() {
         return roles;
@@ -85,8 +94,6 @@ public class User{
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
-
-
 
 
 }

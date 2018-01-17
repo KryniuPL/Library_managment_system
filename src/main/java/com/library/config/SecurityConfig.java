@@ -24,7 +24,7 @@ import javax.sql.DataSource;
 public class SecurityConfig  extends WebSecurityConfigurerAdapter {
 
 
-   public static final String DEF_USERS_BY_USERNAME_QUERY="select username,password,true"+"from user where username=?";
+   public static final String DEF_USERS_BY_USERNAME_QUERY="SELECT User.username,User.password,active from User where User.username=?";
    public static final String DEF_AUTHORITIES_BY_USERNAME_QUERY="select User.username, Role.name from User,Role,User_Role where User.userID=User_Role.user_userID and User_Role.roles_roleID=Role.roleID and username= ?";
 
    @Autowired
@@ -59,6 +59,8 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {
    @Override
    protected void configure(AuthenticationManagerBuilder authorization) throws Exception
    {
+      authorization.inMemoryAuthentication()
+              .withUser("user").password("password").roles("ADMIN");
       authorization.jdbcAuthentication()
               .usersByUsernameQuery(DEF_USERS_BY_USERNAME_QUERY)
               .authoritiesByUsernameQuery(DEF_AUTHORITIES_BY_USERNAME_QUERY)
