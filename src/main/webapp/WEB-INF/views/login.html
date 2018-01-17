@@ -18,13 +18,13 @@
 
 <div class="container">
 
-    <form th:action="@{/login}" method="POST" class="form-signin">
+    <form th:action="@{/login}" method="post" class="form-signin">
         <h3 class="form-signin-heading" th:text="LoginPage"></h3>
         <br/>
 
-        <input type="text" id="username" name="Username"  th:placeholder="Username"
+        <input type="text" id="username" name="username"  th:placeholder="username"
                class="form-control" /> <br/>
-        <input type="password"  th:placeholder="Password"
+        <input type="password"  th:placeholder="password"
                id="password" name="Password" class="form-control" /> <br />
 
         <div align="center" th:if="${param.error}">

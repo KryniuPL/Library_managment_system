@@ -23,6 +23,7 @@ public class User{
     @NotEmpty(message = "*Please provide your password")
     private String password;
     @Email(message = "*Please provide a valid email")
+    @NotEmpty(message = "*Please provide an email")
     private String email;
     private Set<Role> roles=new HashSet<>(0);
 
