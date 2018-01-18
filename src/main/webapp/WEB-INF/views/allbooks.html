@@ -5,22 +5,23 @@
 
 <head>
     <title>Zbiór ksiąg</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <h1>
-        Księgozbiór
-    </h1>
+    <div class="container">
+    <h1 class="display-4">Księgozbiór</h1>
 
-    <div>
+    <div class="form-group container">
         <form action="#" th:action="@{allbooks/search}" method="post">
-            <p>Wyszukaj: <input type="text" id="phrase" name="phrase" title="Wyszukaj..." /></p>
-            <p><input type="submit" value="Wyszukaj" /></p>
+            <p><input type="text" class="form-control" id="phrase" name="phrase" title="Search" placeholder="Wyszukaj..." /></p>
+            <p><button class="btn btn-lg btn-primary btn-block search-button" name="Search" value="Search" type="Submit" th:text="Wyszukaj"></button></p>
         </form>
     </div>
 
     <br>
-
-    <div>
         <table class="table table-bordered" border="1" id="dataTable" cellspacing="0">
             <thead>
             <tr>

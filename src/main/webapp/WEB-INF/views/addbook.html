@@ -3,20 +3,28 @@
 <head>
     <title>Dodawanie ksiazki</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
     <body>
-        <h1>Dodaj</h1>
+    <div class="container">
+        <h1 class="display-4">Dodaj</h1>
 
         <!--/*@thymesVar id="book" type="com.library.model.Book"*/-->
         <!--/*@thymesVar id="author" type="String"*/-->
         <!--/*@thymesVar id="name" type="String"*/-->
         <!--/*@thymesVar id="price" type="Int"*/-->
 
-        <form action="#" th:action="@{addbook}" th:object="${book}" method="post">
-            <p>Autor: <input type="text" id="author" title="Autor" th:field="*{author}" /></p>
-            <p>Nazwa: <input type="text" id="name" title="Nazwa" th:field="*{name}" /></p>
-            <p>Cena: <input type="number" id="price" title="Cena" th:field="*{price}" /></p>
-            <p><input type="submit" value="Dodaj" /> <input type="reset" value="Resetuj" /></p>
-        </form>
+        <div class="container">
+            <form class="form-group" action="#" th:action="@{addbook}" th:object="${book}" method="post">
+                <p><input  type="text" class="form-control" id="author" title="Autor" th:field="*{author}" placeholder="Autor" /></p>
+                <p><input type="text" class="form-control" id="name" title="Nazwa" th:field="*{name}" placeholder="Nazwa" /></p>
+                <p><input type="number" class="form-control" id="price" title="Cena" th:field="*{price}" placeholder="Cena" /></p>
+                <p><button class="btn btn-lg btn-primary btn-block" name="Add" value="Add" type="Submit" th:text="Dodaj"></button> <button class="btn btn-lg btn-primary btn-block" name="Reset" value="Reset" type="Reset" th:text="Resetuj"></p>
+            </form>
+        </div>
+    </div>
     </body>
 </html>
