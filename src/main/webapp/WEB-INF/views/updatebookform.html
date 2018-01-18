@@ -3,44 +3,51 @@
 <head>
     <title>Dodawanie ksiazki</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-<h1>Edytuj</h1>
-<br>
-<div>
-    <table class="table table-bordered" border="1" id="dataTable" cellspacing="0">
-        <thead>
-        <tr>
-            <th>Nazwa</th>
-            <th>Autor</th>
-            <th>Cena</th>
-            <th>Status</th>
-        </tr>
-        </thead>
-        <tbody>
+    <div class="container">
+    <h1 class="display-4">Edytuj</h1>
+    <br>
+        <div class="container">
+            <table class="table table-bordered" id="dataTable" cellspacing="0">
+                <thead>
+                <tr>
+                    <th>Nazwa</th>
+                    <th>Autor</th>
+                    <th>Cena</th>
+                    <th>Status</th>
+                </tr>
+                </thead>
+                <tbody>
+                <!--/*@thymesVar id="book" type="com.library.model.Book"*/-->
+                <!--/*@thymesVar id="bookList" type="com.library.model.Book"*/-->
+                <tr>
+                    <td th:text="${book.name}"></td>
+                    <td th:text="${book.author}"></td>
+                    <td th:text="${book.price}"></td>
+                    <td th:text="${book.status}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
         <!--/*@thymesVar id="book" type="com.library.model.Book"*/-->
-        <!--/*@thymesVar id="bookList" type="com.library.model.Book"*/-->
-        <tr>
-            <td th:text="${book.name}"></td>
-            <td th:text="${book.author}"></td>
-            <td th:text="${book.price}"></td>
-            <td th:text="${book.status}"></td>
-        </tr>
-        </tbody>
-    </table>
-</div>
-
-<!--/*@thymesVar id="book" type="com.library.model.Book"*/-->
-<!--/*@thymesVar id="author" type="String"*/-->
-<!--/*@thymesVar id="name" type="String"*/-->
-<!--/*@thymesVar id="price" type="Int"*/-->
-
-<form action="#" th:action="@{save}" th:object="${book}" method="post">
-    <p>Autor: <input type="text" id="author" title="Autor" th:field="*{author}" /></p>
-    <p>Nazwa: <input type="text" id="name" title="Nazwa" th:field="*{name}" /></p>
-    <p>Cena: <input type="number" id="price" title="Cena" th:field="*{price}" /></p>
-    <p>Cena: <input type="hidden" id="bookID" title="ID" th:field="*{bookID}" /></p>
-    <p><input type="submit" value="Aktualizuj" /> <input type="reset" value="Resetuj" /></p>
-</form>
+        <!--/*@thymesVar id="author" type="String"*/-->
+        <!--/*@thymesVar id="name" type="String"*/-->
+        <!--/*@thymesVar id="price" type="Int"*/-->
+        <div class="form-group container">
+            <form action="#" th:action="@{save}" th:object="${book}" method="post">
+                <p>Autor: <input type="text" class="form-control" id="author" title="Autor" th:field="*{author}" /></p>
+                <p>Nazwa: <input type="text" class="form-control" id="name" title="Nazwa" th:field="*{name}" /></p>
+                <p>Cena: <input type="number" class="form-control" id="price" title="Cena" th:field="*{price}" /></p>
+                <p>Cena: <input type="hidden" class="form-control" id="bookID" title="ID" th:field="*{bookID}" /></p>
+                <p><button class="btn btn-lg btn-primary btn-block" name="Update" value="Update" type="Submit" th:text="Aktualizuj"></button> <button class="btn btn-lg btn-primary btn-block" name="Reset" value="Reset" type="Reset" th:text="Resetuj"></button></p>
+            </form>
+        </div>
+    </div>
 </body>
 </html>
