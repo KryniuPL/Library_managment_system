@@ -1,27 +1,35 @@
 package com.library.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
+
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 
 @Entity
-public class User{
+public class User {
+
+
+    private Integer userID;
+    @NotEmpty(message = "*Please provide your firstname")
+    private String firstname;
+    @NotEmpty(message = "*Please provide your lastname")
+    private String surname;
+    @NotEmpty(message = "*Please provide your login name")
+    private String username;
+    @NotEmpty(message = "*Please provide your password")
+    private String password;
+    @Email(message = "*Please provide a valid email")
+    @NotEmpty(message = "*Please provide an email")
+    private String email;
+    private int active;
+    private Set<Role> roles = new HashSet<>(0);
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer userID;
-    private String firstname;
-    private String surname;
-    private String username;
-    private String password;
-    private String email;
-    private String role;
-
     public Integer getUserID() {
         return userID;
     }
@@ -70,13 +78,23 @@ public class User{
         this.email = email;
     }
 
-    public String getRole() {
-        return role;
+    public int getActive() {
+        return active;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setActive(int active) {
+        this.active = active;
     }
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
 
 }
 

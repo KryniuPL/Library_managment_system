@@ -4,6 +4,7 @@ package com.library.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.thymeleaf.spring4.SpringTemplateEngine;
@@ -15,6 +16,14 @@ import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 @EnableWebMvc
 @ComponentScan("com.library")
 public class WebConfig extends WebMvcConfigurerAdapter {
+
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder()
+    {
+        BCryptPasswordEncoder bCryptPasswordEncoder=new BCryptPasswordEncoder();
+        return bCryptPasswordEncoder;
+    }
+
 
     @Bean
     public SpringTemplateEngine templateEngine() {

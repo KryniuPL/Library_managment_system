@@ -11,9 +11,12 @@ public class HomeController {
         return "index";
     }
 
-    @RequestMapping(value = "/login")
-    public String login()
-    {
-        return "login";
-    }
+
+
+    @RequestMapping(value = "/home")
+    public String home(){return "home";}
+
+
+
+
 }
