@@ -17,7 +17,7 @@
     <div class="form-group container">
         <form action="#" th:action="@{allbooks/search}" method="post">
             <p><input type="text" class="form-control" id="phrase" name="phrase" title="Search" placeholder="Wyszukaj..." /></p>
-            <p><button class="btn btn-lg btn-primary btn-block search-button" name="Search" value="Search" type="Submit" th:text="Wyszukaj"></button></p>
+            <p><button class="btn .btn-md btn-primary search-button" name="Search" value="Search" type="Submit" th:text="Wyszukaj"></button></p>
         </form>
     </div>
 
@@ -30,7 +30,7 @@
                 <th>Cena</th>
                 <th>Status</th>
                 <th>Aktualizuj</th>
-                <th>Usun</th>
+                <th>Usuń</th>
             </tr>
             </thead>
             <tbody>
@@ -42,7 +42,7 @@
                 <td th:text="${book.price}"></td>
                 <td th:text="${book.status == 'free'} ? 'Dostępna' : 'Wypożyczona'"></td>
                 <td><a th:href="'/updatebook/' + ${book.bookID}">Aktualizuj</a></td>
-                <td><a th:href="'/deletebook/' + ${book.bookID}">Usun</a></td>
+                <td><a th:href="'/deletebook/' + ${book.bookID}">Usuń</a></td>
             </tr>
             </tbody>
         </table>

@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Dodawanie ksiazki</title>
+    <title>Edytowanie ksiazki</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -10,7 +10,7 @@
 </head>
 <body>
     <div class="container">
-    <h1 class="display-4">Edytuj</h1>
+    <h1 class="display-4">Edytuj książkę</h1>
     <br>
         <div class="container">
             <table class="table table-bordered" id="dataTable" cellspacing="0">
@@ -39,13 +39,25 @@
         <!--/*@thymesVar id="author" type="String"*/-->
         <!--/*@thymesVar id="name" type="String"*/-->
         <!--/*@thymesVar id="price" type="Int"*/-->
-        <div class="form-group container">
+        <div class="container">
             <form action="#" th:action="@{save}" th:object="${book}" method="post">
-                <p>Autor: <input type="text" class="form-control" id="author" title="Autor" th:field="*{author}" /></p>
-                <p>Nazwa: <input type="text" class="form-control" id="name" title="Nazwa" th:field="*{name}" /></p>
-                <p>Cena: <input type="number" class="form-control" id="price" title="Cena" th:field="*{price}" /></p>
-                <p>Cena: <input type="hidden" class="form-control" id="bookID" title="ID" th:field="*{bookID}" /></p>
-                <p><button class="btn btn-lg btn-primary btn-block" name="Update" value="Update" type="Submit" th:text="Aktualizuj"></button> <button class="btn btn-lg btn-primary btn-block" name="Reset" value="Reset" type="Reset" th:text="Resetuj"></button></p>
+                <div class="row">
+                    <div class="form-group col-xs-4">
+                    <p><input type="text" class="form-control" id="author" title="Autor" th:field="*{author}" placeholder="Autor" /></p>
+                 </div>
+              </div>
+                <div class="row">
+                    <div class="form-group col-xs-4">
+                        <p><input type="text" class="form-control" id="name" title="Nazwa" th:field="*{name}" placeholder="Nazwa" /></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-xs-4">
+                        <p><input type="number" class="form-control" id="price" title="Cena" th:field="*{price}" placeholder="Cena" /></p>
+                    </div>
+                </div>
+                <p><input type="hidden" class="form-control" id="bookID" title="ID" th:field="*{bookID}" /></p>
+                <p><button class="btn .btn-md btn-primary " name="Update" value="Update" type="Submit" th:text="Aktualizuj"></button> <button class="btn .btn-md btn-primary " name="Reset" value="Reset" type="Reset" th:text="Resetuj"></button></p>
             </form>
         </div>
     </div>
