@@ -1,6 +1,6 @@
-.wrapper {    
-	margin-top: 80px;
-	margin-bottom: 20px;
+.wrapper {
+  margin-top: 80px;
+  margin-bottom: 20px;
 }
 
 .form-signin {
@@ -8,8 +8,8 @@
   padding: 30px 38px 66px;
   margin: 0 auto;
   background-color: #eee;
-  border: 3px dotted rgba(0,0,0,0.1);  
-  }
+  border: 3px dotted rgba(0,0,0,0.1);
+}
 
 .form-signin-heading {
   text-align:center;
