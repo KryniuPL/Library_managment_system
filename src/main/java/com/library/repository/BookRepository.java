@@ -22,4 +22,22 @@ public interface BookRepository extends JpaRepository<Book, Long>{
     @Query("update Book b set b.author = ?1, b.name = ?2, b.price = ?3 where b.bookID = ?4")
     void update(String author, String name, Integer price, Long ID);
 
+    @Query("select b from Book b order by b.name asc")
+    List<Book> orderByNameAsc();
+
+    @Query("select b from Book b order by b.name desc")
+    List<Book> orderByNameDesc();
+
+    @Query("select b from Book b order by b.name asc")
+    List<Book> orderByAuthorAsc();
+
+    @Query("select b from Book b order by b.name desc")
+    List<Book> orderByAuthorDesc();
+
+    @Query("select b from Book b order by b.name asc")
+    List<Book> orderByPriceAsc();
+
+    @Query("select b from Book b order by b.name desc")
+    List<Book> orderByPriceDesc();
+
 }

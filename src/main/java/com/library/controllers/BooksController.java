@@ -77,4 +77,21 @@ public class BooksController {
         bookRepository.update(book.getAuthor(),book.getName(),book.getPrice(),book.getBookID());
         return "redirect:/allbooks";
     }
+
+    @RequestMapping(value = "/sortbooks/{id}",method = RequestMethod.GET)
+    public String sortBooks(@PathVariable("id") Integer id, Model model){
+        switch (id){
+            case 1:
+                model.addAttribute("bookList",bookRepository.orderByNameAsc());
+                break;
+            case 2:
+                model.addAttribute("bookList",bookRepository.orderByAuthorAsc());
+                break;
+            case 3:
+                model.addAttribute("bookList",bookRepository.orderByPriceAsc());
+                break;
+        }
+
+        return "redirect:/allbooks";
+    }
 }
