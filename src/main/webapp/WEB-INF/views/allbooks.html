@@ -40,7 +40,7 @@
                 <td th:text="${book.name}"></td>
                 <td th:text="${book.author}"></td>
                 <td th:text="${book.price}"></td>
-                <td th:text="${book.status}"></td>
+                <td th:text="${book.status == 'free'} ? 'Dostępna' : 'Wypożyczona'"></td>
                 <td><a th:href="'/updatebook/' + ${book.bookID}">Aktualizuj</a></td>
                 <td><a th:href="'/deletebook/' + ${book.bookID}">Usun</a></td>
             </tr>
