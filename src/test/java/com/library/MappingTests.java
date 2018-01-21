@@ -33,7 +33,7 @@ public class MappingTests {
     {
         LoginController controller=new LoginController();
         MockMvc mockMvc=standaloneSetup(controller).build();
-        mockMvc.perform(get("/login")).andExpect(view().name("login"));
+        mockMvc.perform(get("/login")).andExpect(view().name("loginForm"));
     }
 
     /*

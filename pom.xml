@@ -135,6 +135,12 @@
             <artifactId>spring-security-web</artifactId>
             <version>4.2.3.RELEASE</version>
         </dependency>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>6.8</version>
+            <scope>test</scope>
+        </dependency>
 
 
     </dependencies>

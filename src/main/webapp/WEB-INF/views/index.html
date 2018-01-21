@@ -4,15 +4,27 @@
 <head>
     <title>Biblioteka</title>
     <link rel="stylesheet" type="text/css" th:href="@{/web-resources/libstyle.css}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-<h1>Witamy w Systemie Zarządzania Biblioteką</h1>
-<a th:href="@{/login}">Logowanie</a>
+<h1 align="center">Witamy w Systemie Zarządzania Biblioteką</h1>
 <br/>
-<a th:href="@{/register}">Rejestracja</a>
+<form th:action="@{/login}" method="get">
+    <button class="btn btn-md btn-warning btn-block" type="Submit">Logowanie</button>
+</form>
 <br/>
-<a th:href="@{/allbooks}">Przejrzyj zbiór</a>
+<form th:action="@{/register}" method="get">
+    <button class="btn btn-md btn-primary btn-block" type="Submit">Rejestracja</button>
+</form>
 <br/>
-<a th:href="@{/addbook}">Dodaj książkę</a>
+<form th:action="@{/allbooks}" method="get">
+    <button class="btn btn-md btn-info btn-block" type="Submit">Księgozbiór</button>
+</form>
+<br/>
+<form th:action="@{/addbook}" method="get">
+    <button class="btn btn-md btn-default btn-block" type="Submit">Dodaj książkę</button>
+</form>
 </body>
 </html>
