@@ -45,8 +45,7 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {
               .antMatchers("/allbooks").permitAll()
               .antMatchers("/web-resources/libstyle.css").permitAll()
               .antMatchers("/css/registration.css").permitAll()
-              .antMatchers("/allbooks").permitAll()
-              .antMatchers("/admin/**").hasAuthority("ADMIN").anyRequest()
+              .antMatchers("/home").hasAnyAuthority("ADMIN","USER").anyRequest()
               .authenticated().and().csrf().disable().formLogin()
               .loginPage("/login").failureUrl("/login?error=true")
               .defaultSuccessUrl("/home")
@@ -54,7 +53,7 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {
               .passwordParameter("password")
               .and().logout()
               .logoutSuccessUrl("/").and().exceptionHandling()
-              .accessDeniedPage("/access-denied");
+              .accessDeniedPage("/accessdenied");
 
 
    }

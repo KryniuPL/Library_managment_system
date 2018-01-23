@@ -1,6 +1,8 @@
 package com.library.controllers;
 
+import com.library.model.Role;
 import com.library.model.User;
+import com.library.repository.RoleRepository;
 import com.library.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -14,15 +16,30 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 
+import javax.persistence.NamedQuery;
 import javax.validation.Valid;
+
+import java.sql.SQLException;
+import java.sql.Statement;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 @Controller
 public class LoginController {
 
+
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private RoleRepository roleRepository;
+
+    @RequestMapping(value={"/admin"}, method = RequestMethod.GET)
+    public ModelAndView admin(){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("admin");
+        return modelAndView;
+    }
 
     @RequestMapping(value={"/login"}, method = RequestMethod.GET)
     public ModelAndView login(){
@@ -64,15 +81,17 @@ public class LoginController {
 
 
     @RequestMapping(value = "/home",method = RequestMethod.GET)
-    public ModelAndView home()
+    public ModelAndView home () throws SQLException
     {
         ModelAndView modelAndView=new ModelAndView();
         Authentication authentication= SecurityContextHolder.getContext().getAuthentication();
         User user=userService.findByUsername(authentication.getName());
-        modelAndView.addObject("username","Welcome"+" "+user.getFirstname()+""+user.getSurname()+" ("+user.getEmail()+")");
-        modelAndView.addObject("adminMessage","Content Available Only for Users with Admin Role");
-        modelAndView.setViewName("/home");
-        return modelAndView;
+
+            modelAndView.addObject("username", "Welcome" + " " + user.getFirstname() + "" + user.getSurname() + " (" + user.getEmail() + ")");
+            modelAndView.setViewName("/home");
+            return modelAndView;
+
+
     }
 
 }

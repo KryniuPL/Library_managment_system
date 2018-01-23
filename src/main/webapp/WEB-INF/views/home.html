@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+<html
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
 <head>
-    <title>Admin Page</title>
+    <title sec:authorize="hasAuthority('ADMIN')">Admin Page</title>
+    <title sec:authorize="hasAuthority('USER')">Usergit add  Page</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -23,9 +25,18 @@
                 <span th:utext="${username}"></span>
             </div>
             <div class="panel-body">
+                <div sec:authorize="hasAuthority('ADMIN')">
+                    <form th:action="@{/addbook}" method="get">
+                        <button class="btn btn-md btn-default btn-block" type="Submit">Dodaj książkę</button>
+                    </form>
+                </div>
+                <div sec:authorize="hasAuthority('USER')">
+                    This content is only shown to <b>users</b>.
+                </div>
             </div>
             <p class="admin-message-text text-center" th:utext="${adminMessage}"></p>
         </div>
+
     </div>
 
 </div>
