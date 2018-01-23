@@ -42,7 +42,7 @@ public class BooksController {
     public String getAllBooks(Model model) {
         List<Book> bookList = bookRepository.findAll();
         model.addAttribute("bookList",bookList);
-        return "allbooks";
+        return "allbooksuser";
     }
 
     //Sometimes mapping redirects to: /allbooks/allbooks/search
@@ -53,7 +53,7 @@ public class BooksController {
             return "redirect:/allbooks";
 
         model.addAttribute("bookList",bookList);
-        return "allbooks";
+        return "allbooksuser";
     }
 
     @RequestMapping(value = "/deletebook/{id}", method = RequestMethod.GET)

@@ -29,8 +29,6 @@
                 <th><a th:href="'/sortbooks/'+'2'">Autor</a></th>
                 <th><a th:href="'/sortbooks/'+'3'">Cena</a></th>
                 <th>Status</th>
-                <th>Aktualizuj</th>
-                <th>Usuń</th>
             </tr>
             </thead>
             <tbody>
@@ -41,8 +39,6 @@
                 <td th:text="${book.author}"></td>
                 <td th:text="${book.price}"></td>
                 <td th:text="${book.status == 'free'} ? 'Dostępna' : 'Wypożyczona'"></td>
-                <td><a th:href="'/updatebook/' + ${book.bookID}">Aktualizuj</a></td>
-                <td><a th:href="'/deletebook/' + ${book.bookID}">Usuń</a></td>
             </tr>
             </tbody>
         </table>
