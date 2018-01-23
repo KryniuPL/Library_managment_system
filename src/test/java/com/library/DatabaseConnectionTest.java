@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 import java.sql.*;
 
-public class DatabaseTests {
+public class DatabaseConnectionTest {
 
     private Connection connection;
     private static Statement statement;
