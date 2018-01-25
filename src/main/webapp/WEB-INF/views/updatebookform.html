@@ -28,7 +28,7 @@
                 <tr>
                     <td th:text="${book.name}"></td>
                     <td th:text="${book.author}"></td>
-                    <td th:text="${book.price}"></td>
+                    <td th:text="${book.quantity}"></td>
                     <td th:text="${book.status}"></td>
                 </tr>
                 </tbody>
@@ -53,7 +53,7 @@
                 </div>
                 <div class="row">
                     <div class="form-group col-xs-4">
-                        <p><input type="number" class="form-control" id="price" title="Cena" th:field="*{price}" placeholder="Cena" /></p>
+                        <p><input type="number" class="form-control" id="price" title="Cena" th:field="*{quantity}" placeholder="Cena" /></p>
                     </div>
                 </div>
                 <p><input type="hidden" class="form-control" id="bookID" title="ID" th:field="*{bookID}" /></p>

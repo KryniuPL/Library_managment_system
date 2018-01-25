@@ -27,7 +27,8 @@
             <tr>
                 <th><a th:href="'/sortbooks/'+'1'">Nazwa</a></th>
                 <th><a th:href="'/sortbooks/'+'2'">Autor</a></th>
-                <th><a th:href="'/sortbooks/'+'3'">Cena</a></th>
+                <th><a th:href="'/sortbooks/'+'3'">Ilość</a></th>
+                <th>Kod ISBN</a></th>
                 <th>Status</th>
                 <th sec:authorize="hasAuthority('ADMIN')">Aktualizuj</th>
                 <th sec:authorize="hasAuthority('ADMIN')">Usuń</th>
@@ -40,7 +41,8 @@
             <tr th:each="book : ${bookList}">
                 <td th:text="${book.name}"></td>
                 <td th:text="${book.author}"></td>
-                <td th:text="${book.price}"></td>
+                <td th:text="${book.quantity}"></td>
+                <td th:text="${book.isbn}"></td>
                 <td th:text="${book.status == 'free'} ? 'Dostępna' : 'Wypożyczona'"></td>
                 <td sec:authorize="hasAuthority('ADMIN')"><a th:href="'/updatebook/' + ${book.bookID}">Aktualizuj</a></td>
                 <td sec:authorize="hasAuthority('ADMIN')"><a th:href="'/deletebook/' + ${book.bookID}">Usuń</a></td>

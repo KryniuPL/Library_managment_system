@@ -31,10 +31,16 @@ public class BooksController {
         }
         model.addAttribute("author",book.getAuthor());
         model.addAttribute("name",book.getName());
-        model.addAttribute("price",book.getName());
         model.addAttribute("price",book.getStatus());
-        book.setStatus("free");
-        bookRepository.save(book);
+        Book bookToUpdate = bookRepository.getIdenticalLike(book.getName(),book.getAuthor(),book.getIsbn());
+        if(bookToUpdate != null){
+            Long quantity = bookRepository.getQuantity(book.getName(),book.getAuthor(),book.getIsbn());
+            bookRepository.update(bookToUpdate.getAuthor(),bookToUpdate.getName(),quantity+1,bookToUpdate.getIsbn(),bookToUpdate.getBookID());
+        }else {
+            book.setQuantity(1l);
+            book.setStatus("free");
+            bookRepository.save(book);
+        }
         return "redirect:/allbooks";
     }
 
@@ -72,9 +78,8 @@ public class BooksController {
     public String saveUpdateBook(@Valid @ModelAttribute("book") Book book, Model model){
         model.addAttribute("author",book.getAuthor());
         model.addAttribute("name",book.getName());
-        model.addAttribute("price",book.getName());
-        model.addAttribute("price",book.getStatus());
-        bookRepository.update(book.getAuthor(),book.getName(),book.getPrice(),book.getBookID());
+        model.addAttribute("isbn",book.getIsbn());
+        bookRepository.update(book.getAuthor(),book.getName(),book.getQuantity(),book.getIsbn(),book.getBookID());
         return "redirect:/allbooks";
     }
 
