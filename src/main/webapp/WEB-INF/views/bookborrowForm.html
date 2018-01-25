@@ -1,10 +1,72 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Wypożyczenie ksiazki</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
+<div class="container">
+    <h1 class="display-4">Wypożycz książkę</h1>
+    <br>
+    <div class="container">
+        <table class="table table-bordered" id="dataTable" cellspacing="0">
+            <thead>
+            <tr>
+                <th>Nazwa</th>
+                <th>Autor</th>
+                <th>Cena</th>
+                <th>Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!--/*@thymesVar id="book" type="com.library.model.Book"*/-->
+            <!--/*@thymesVar id="bookList" type="com.library.model.Book"*/-->
+            <tr>
+                <td th:text="${book.name}"></td>
+                <td th:text="${book.author}"></td>
+                <td th:text="${book.price}"></td>
+                <td th:text="${book.status}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 
+
+    <!--/*@thymesVar id="bookborrow" type="com.library.model.BookBorrow"*/-->
+    <!--/*@thymesVar id="startDate" type="Date"*/-->
+    <!--/*@thymesVar id="endDate" type="Date"*/-->
+    <!--/*@thymesVar id="bookID" type="Int"*/-->
+    <!--/*@thymesVar id="userID" type="Int"*/-->
+    <div class="container">
+        <form action="#" th:action="@{save}" th:object="${bookborrow}" method="post">
+            <div class="row">
+                <div class="form-group col-xs-4">
+                    <p><input type="text" class="form-control" id="startDate" title="startDate" th:field="*{startDate}" placeholder="Data wypożeczynia" /></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-xs-4">
+                    <p><input type="text" class="form-control" id="endDate" title="endDate" th:field="*{endDate}" placeholder="Data zwrotu" /></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-xs-4">
+                    <p><input type="number" class="form-control" id="bookID" title="bookID" th:field="*{bookID}" placeholder="Książka" /></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-xs-4">
+                    <p><input type="number" class="form-control" id="userID" title="userID" th:field="*{userID}" placeholder="Książka" /></p>
+                </div>
+            </div>
+            <p><input type="hidden" class="form-control" id="borrowID" title="ID" th:field="*{borrowID}" /></p>
+            <p><button class="btn .btn-md btn-primary " name="Update" value="Update" type="Submit" th:text="Aktualizuj"></button> <button class="btn .btn-md btn-primary " name="Reset" value="Reset" type="Reset" th:text="Resetuj"></button></p>
+        </form>
+    </div>
+</div>
 </body>
 </html>
