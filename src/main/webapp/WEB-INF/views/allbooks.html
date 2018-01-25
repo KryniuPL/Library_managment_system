@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
       xmlns:th="http://www.thymeleaf.org">
 
 <head>
@@ -29,6 +29,9 @@
                 <th><a th:href="'/sortbooks/'+'2'">Autor</a></th>
                 <th><a th:href="'/sortbooks/'+'3'">Cena</a></th>
                 <th>Status</th>
+                <th sec:authorize="hasAuthority('ADMIN')">Aktualizuj</th>
+                <th sec:authorize="hasAuthority('ADMIN')">Usuń</th>
+                <th sec:authorize="hasAuthority('ADMIN')">Wypożycz</th>
             </tr>
             </thead>
             <tbody>
@@ -39,6 +42,9 @@
                 <td th:text="${book.author}"></td>
                 <td th:text="${book.price}"></td>
                 <td th:text="${book.status == 'free'} ? 'Dostępna' : 'Wypożyczona'"></td>
+                <td sec:authorize="hasAuthority('ADMIN')"><a th:href="'/updatebook/' + ${book.bookID}">Aktualizuj</a></td>
+                <td sec:authorize="hasAuthority('ADMIN')"><a th:href="'/deletebook/' + ${book.bookID}">Usuń</a></td>
+                <td sec:authorize="hasAuthority('ADMIN')"><a th:href="'/bookborrow/' + ${book.bookID}">Wypożycz</a></td>
             </tr>
             </tbody>
         </table>

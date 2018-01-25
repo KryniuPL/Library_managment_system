@@ -5,7 +5,7 @@
 
 <head>
     <title sec:authorize="hasAuthority('ADMIN')">Admin Page</title>
-    <title sec:authorize="hasAuthority('USER')">Usergit add  Page</title>
+    <title sec:authorize="hasAuthority('USER')">User Page</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -29,6 +29,11 @@
                     <form th:action="@{/addbook}" method="get">
                         <button class="btn btn-md btn-default btn-block" type="Submit">Dodaj książkę</button>
                     </form>
+                    <br>
+                    <form th:action="@{/allbooks.html}" method="get">
+                        <button class="btn btn-md btn-default btn-block" type="Submit">Księgozbiór</button>
+                    </form>
+                    <br>
                 </div>
                 <div sec:authorize="hasAuthority('USER')">
                     This content is only shown to <b>users</b>.

@@ -8,4 +8,5 @@ public interface BookBorrowRepository extends JpaRepository<BookBorrow, Long>{
     /*
     custom queries below
      */
+    //void issueBook(String username);
 }

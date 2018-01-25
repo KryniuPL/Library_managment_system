@@ -34,13 +34,6 @@ public class LoginController {
     @Autowired
     private RoleRepository roleRepository;
 
-    @RequestMapping(value={"/admin"}, method = RequestMethod.GET)
-    public ModelAndView admin(){
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("admin");
-        return modelAndView;
-    }
-
     @RequestMapping(value={"/login"}, method = RequestMethod.GET)
     public ModelAndView login(){
         ModelAndView modelAndView = new ModelAndView();
@@ -81,7 +74,7 @@ public class LoginController {
 
 
     @RequestMapping(value = "/home",method = RequestMethod.GET)
-    public ModelAndView home () throws SQLException
+    public ModelAndView home()
     {
         ModelAndView modelAndView=new ModelAndView();
         Authentication authentication= SecurityContextHolder.getContext().getAuthentication();
@@ -90,8 +83,6 @@ public class LoginController {
             modelAndView.addObject("username", "Welcome" + " " + user.getFirstname() + "" + user.getSurname() + " (" + user.getEmail() + ")");
             modelAndView.setViewName("/home");
             return modelAndView;
-
-
     }
 
 }
