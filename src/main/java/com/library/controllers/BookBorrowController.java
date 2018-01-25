@@ -13,7 +13,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.TimeZone;
 
 @Controller
 public class BookBorrowController{
@@ -36,9 +40,13 @@ public class BookBorrowController{
     @RequestMapping(value = "/bookborrow/save", method = RequestMethod.POST)
     public String saveBorrowBook(@Valid @ModelAttribute("bookborrow") BookBorrow bookBorrow,Model model)
     {
-
-        bookBorrow.setStartDate(new Date());
-        model.addAttribute("endDate",bookBorrow.getEndDate());
+        Date date = new Date();
+        bookBorrow.setStartDate(date);
+        Calendar calendar = new GregorianCalendar(TimeZone.getTimeZone("UTC +2"));
+        calendar.setTime(date);
+        calendar.add(Calendar.DATE, 90);
+        date = calendar.getTime();
+        bookBorrow.setEndDate(date);
         model.addAttribute("bookID",bookBorrow.getBook());
         model.addAttribute("userID",bookBorrow.getEndDate());
         bookBorrowRepository.save(bookBorrow);
