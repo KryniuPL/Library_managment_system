@@ -1,19 +1,19 @@
 package com.library.controllers;
 
-import com.library.model.Book;
 import com.library.model.BookBorrow;
 import com.library.repository.BookBorrowRepository;
 import com.library.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
+import java.time.LocalDateTime;
+import java.util.Date;
 
 @Controller
 public class BookBorrowController{
@@ -26,7 +26,10 @@ public class BookBorrowController{
 
     @RequestMapping(value = "/bookborrow/{id}", method = RequestMethod.GET)
     public String updateBook(@PathVariable("id") Long id, Model model){
-        model.addAttribute("book",bookRepository.findOne(id));
+        BookBorrow bookBorrow = new BookBorrow();
+        bookBorrow.setBook(bookRepository.findOne(id));
+        model.addAttribute("bookShow",bookBorrow.getBook());
+        model.addAttribute("bookBorrow",bookBorrow);
         return "bookborrowForm";
     }
 
@@ -34,9 +37,9 @@ public class BookBorrowController{
     public String saveBorrowBook(@Valid @ModelAttribute("bookborrow") BookBorrow bookBorrow,Model model)
     {
 
-        model.addAttribute("startDate",bookBorrow.getStartDate());
+        bookBorrow.setStartDate(new Date());
         model.addAttribute("endDate",bookBorrow.getEndDate());
-        model.addAttribute("bookID",bookBorrow.getBookID());
+        model.addAttribute("bookID",bookBorrow.getBook());
         model.addAttribute("userID",bookBorrow.getEndDate());
         bookBorrowRepository.save(bookBorrow);
         return "redirect:/allbooks";

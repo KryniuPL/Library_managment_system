@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Wykaz użytkowników</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <h1 class="display-4">Wykaz użytkowników</h1>
+
+    <div class="form-group container">
+        <form action="#" th:action="@{allusers/search}" method="post">
+            <p><input type="text" class="form-control" id="phrase" name="phrase" title="Search" placeholder="Wyszukaj..." /></p>
+            <p><button class="btn .btn-md btn-primary search-button" name="Search" value="Search" type="Submit" th:text="Wyszukaj"></button></p>
+        </form>
+    </div>
+
+    <br>
+    <table class="table table-bordered" border="1" id="dataTable" cellspacing="0">
+        <thead>
+        <tr>
+            <th sec:authorize="hasAuthority('ADMIN')">Imie</th>
+            <th sec:authorize="hasAuthority('ADMIN')">Nazwisko</th>
+            <th sec:authorize="hasAuthority('ADMIN')">Login</th>
+            <th sec:authorize="hasAuthority('ADMIN')">Email</th>
+            <th sec:authorize="hasAuthority('ADMIN')">Wypożyczenia</th>
+            <th sec:authorize="hasAuthority('ADMIN')">Usuń</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!--/*@thymesVar id="user" type="com.library.model.User"*/-->
+        <!--/*@thymesVar id="userList" type="com.library.model.User"*/-->
+        <tr th:each="user : ${userList}">
+            <td th:text="${user.firstname}"></td>
+            <td th:text="${user.surname}"></td>
+            <td th:text="${user.username}"></td>
+            <td th:text="${user.email}"></td>
+            <td> BRAK IMPLEMENTACJI</td>
+            <td sec:authorize="hasAuthority('ADMIN')"><a th:href="'/deleteuser/' + ${user.userID}">Usuń</a></td>
+
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

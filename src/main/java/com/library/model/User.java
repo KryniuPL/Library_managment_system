@@ -13,7 +13,7 @@ import java.util.Set;
 public class User {
 
 
-    private Integer userID;
+    private Long userID;
     @NotEmpty(message = "*Please provide your firstname")
     private String firstname;
     @NotEmpty(message = "*Please provide your lastname")
@@ -30,11 +30,11 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public Integer getUserID() {
+    public Long getUserID() {
         return userID;
     }
 
-    public void setUserID(Integer userID) {
+    public void setUserID(Long userID) {
         this.userID = userID;
     }
 

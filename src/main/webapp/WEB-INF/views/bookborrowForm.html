@@ -23,48 +23,30 @@
             </tr>
             </thead>
             <tbody>
-            <!--/*@thymesVar id="book" type="com.library.model.Book"*/-->
-            <!--/*@thymesVar id="bookList" type="com.library.model.Book"*/-->
+            <!--/*@thymesVar id="bookShow" type="com.library.model.Book"*/-->
             <tr>
-                <td th:text="${book.name}"></td>
-                <td th:text="${book.author}"></td>
-                <td th:text="${book.quantity}"></td>
-                <td th:text="${book.status}"></td>
+                <td th:text="${bookShow.name}"></td>
+                <td th:text="${bookShow.author}"></td>
+                <td th:text="${bookShow.quantity}"></td>
+                <td th:text="${bookShow.status}"></td>
             </tr>
             </tbody>
         </table>
     </div>
 
 
-    <!--/*@thymesVar id="bookborrow" type="com.library.model.BookBorrow"*/-->
-    <!--/*@thymesVar id="startDate" type="Date"*/-->
-    <!--/*@thymesVar id="endDate" type="Date"*/-->
+    <!--/*@thymesVar id="bookBorrow" type="com.library.model.BookBorrow"*/-->
     <!--/*@thymesVar id="bookID" type="Int"*/-->
     <!--/*@thymesVar id="userID" type="Int"*/-->
     <div class="container">
-        <form action="#" th:action="@{save}" th:object="${bookborrow}" method="post">
+        <form action="#" th:action="@{save}" th:object="${bookBorrow}" method="post">
             <div class="row">
                 <div class="form-group col-xs-4">
-                    <p><input type="text" class="form-control" id="startDate" title="startDate" th:field="*{startDate}" placeholder="Data wypożeczynia" /></p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group col-xs-4">
-                    <p><input type="text" class="form-control" id="endDate" title="endDate" th:field="*{endDate}" placeholder="Data zwrotu" /></p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group col-xs-4">
-                    <p><input type="number" class="form-control" id="bookID" title="bookID" th:field="*{bookID}" placeholder="Książka" /></p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group col-xs-4">
-                    <p><input type="number" class="form-control" id="userID" title="userID" th:field="*{userID}" placeholder="Książka" /></p>
+                    <p><input type="number" class="form-control" id="userID" title="userID" th:field="*{user.userID}" placeholder="Użytkownik" /></p>
                 </div>
             </div>
             <p><input type="hidden" class="form-control" id="borrowID" title="ID" th:field="*{borrowID}" /></p>
-            <p><button class="btn .btn-md btn-primary " name="Update" value="Update" type="Submit" th:text="Aktualizuj"></button> <button class="btn .btn-md btn-primary " name="Reset" value="Reset" type="Reset" th:text="Resetuj"></button></p>
+            <p><button class="btn .btn-md btn-primary " name="Update" value="Update" type="Submit" th:text="Wypożycz"></button> <button class="btn .btn-md btn-primary " name="Reset" value="Reset" type="Reset" th:text="Resetuj"></button></p>
         </form>
     </div>
 </div>

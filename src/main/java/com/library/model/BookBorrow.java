@@ -13,9 +13,9 @@ public class BookBorrow {
     private Long borrowID;
 
     @ManyToOne
-    private User userID;
+    private User user;
     @ManyToOne
-    private Book bookID;
+    private Book book;
     @Temporal(TemporalType.DATE)
     private Date startDate;
     @Temporal(TemporalType.DATE)
@@ -29,20 +29,20 @@ public class BookBorrow {
         this.borrowID = borrowID;
     }
 
-    public User getUserID() {
-        return userID;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserID(User userID) {
-        this.userID = userID;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public Book getBookID() {
-        return bookID;
+    public Book getBook() {
+        return book;
     }
 
-    public void setBookID(Book bookID) {
-        this.bookID = bookID;
+    public void setBook(Book book) {
+        this.book = book;
     }
 
     public Date getStartDate() {
@@ -60,5 +60,6 @@ public class BookBorrow {
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
+
 
 }
