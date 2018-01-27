@@ -48,7 +48,7 @@ public class BookBorrowController{
         date = calendar.getTime();
         bookBorrow.setEndDate(date);
         model.addAttribute("bookID",bookBorrow.getBook());
-        model.addAttribute("userID",bookBorrow.getEndDate());
+        model.addAttribute("user",bookBorrow.getBook());
         bookBorrowRepository.save(bookBorrow);
         return "redirect:/allbooks";
     }

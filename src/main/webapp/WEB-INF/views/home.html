@@ -38,6 +38,11 @@
                         <button class="btn btn-md btn-default btn-block" type="Submit">Wykaz użytkowników</button>
                     </form>
                     <br>
+                    <br>
+                    <form th:action="@{/profile}" method="get">
+                        <button class="btn btn-md btn-default btn-block" type="Submit">Profil</button>
+                    </form>
+                    <br>
                 </div>
                 <div sec:authorize="hasAuthority('USER')">
                     This content is only shown to <b>users</b>.
