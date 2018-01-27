@@ -1,8 +1,11 @@
 package com.library.controllers;
 
+import com.library.model.Book;
 import com.library.model.BookBorrow;
+import com.library.model.User;
 import com.library.repository.BookBorrowRepository;
 import com.library.repository.BookRepository;
+import com.library.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,6 +31,9 @@ public class BookBorrowController{
     @Autowired
     private BookRepository bookRepository;
 
+    @Autowired
+    private UserService userService;
+
     @RequestMapping(value = "/bookborrow/{id}", method = RequestMethod.GET)
     public String updateBook(@PathVariable("id") Long id, Model model){
         BookBorrow bookBorrow = new BookBorrow();
@@ -38,7 +44,8 @@ public class BookBorrowController{
     }
 
     @RequestMapping(value = "/bookborrow/save", method = RequestMethod.POST)
-    public String saveBorrowBook(@Valid @ModelAttribute("bookborrow") BookBorrow bookBorrow,Model model)
+    public String saveBorrowBook(@Valid @ModelAttribute("bookborrow") BookBorrow bookBorrow,
+                                 @Valid @ModelAttribute("username")String username, Model model)
     {
         Date date = new Date();
         bookBorrow.setStartDate(date);
@@ -47,8 +54,10 @@ public class BookBorrowController{
         calendar.add(Calendar.DATE, 90);
         date = calendar.getTime();
         bookBorrow.setEndDate(date);
-        model.addAttribute("bookID",bookBorrow.getBook());
-        model.addAttribute("user",bookBorrow.getBook());
+        User user=userService.findByUsername(username);
+        Book bookName=bookRepository.findByName("xxx");
+        bookBorrow.setUser(user);
+        bookBorrow.setBook(bookName);
         bookBorrowRepository.save(bookBorrow);
         return "redirect:/allbooks";
     }
