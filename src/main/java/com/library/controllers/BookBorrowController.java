@@ -59,6 +59,7 @@ public class BookBorrowController{
         bookBorrow.setBook(bookname);
         Book book=new Book();
         bookBorrowRepository.save(bookBorrow);
+        bookRepository.updateStatus("issued",tmp);
         return "redirect:/allbooks";
     }
 
