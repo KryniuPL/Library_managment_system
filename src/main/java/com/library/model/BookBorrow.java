@@ -12,9 +12,9 @@ public class BookBorrow {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long borrowID;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private User user;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Book book;
     @Temporal(TemporalType.DATE)
     private Date startDate;

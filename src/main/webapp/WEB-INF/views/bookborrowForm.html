@@ -37,15 +37,15 @@
 
     <!--/*@thymesVar id="bookBorrow" type="com.library.model.BookBorrow"*/-->
     <!--/*@thymesVar id="bookID" type="Int"*/-->
-    <!--/*@thymesVar id="userID" type="Int"*/-->
+    <!--/*@thymesVar id="username" type="String"*/-->
     <div class="container">
         <form action="#" th:action="@{save}" th:object="${bookBorrow}" method="post">
             <div class="row">
                 <div class="form-group col-xs-4">
-                    <p><input type="number" class="form-control" id="userID" title="userID" th:field="*{user.userID}" placeholder="Użytkownik" /></p>
+                    <p><input type="text" class="form-control" id="username" name="username" title="Search" placeholder="Nazwa użytkownika" /></p>
                 </div>
             </div>
-            <p><input type="hidden" class="form-control" id="borrowID" title="ID" th:field="*{borrowID}" /></p>
+            <p><input type="hidden" class="form-control" id="bookname" title="bookname" th:field="*{book.bookID}" /></p>
             <p><button class="btn .btn-md btn-primary " name="Update" value="Update" type="Submit" th:text="Wypożycz"></button> <button class="btn .btn-md btn-primary " name="Reset" value="Reset" type="Reset" th:text="Resetuj"></button></p>
         </form>
     </div>

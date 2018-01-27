@@ -18,6 +18,8 @@ public interface BookRepository extends JpaRepository<Book, Long>{
     @Query("select b from Book b where b.name like %?1% OR b.author like %?1% OR b.isbn like %?1%")
     List<Book> findPhrase(String phrase);
 
+    Book findByName(String name);
+    Book findByBookID(Long id);
     @Modifying
     @Transactional
     @Query("update Book b set b.author = ?1, b.name = ?2, b.quantity = ?3, b.isbn = ?4 where b.bookID = ?5")
