@@ -38,8 +38,9 @@
                                         <td th:text="${user.email}"></td>
                                     </tr>
                                     <tr>
-                                        <td>Liczba wypozyczonych???</td>
-                                        <td>KAPPA</td>
+                                        <td>Liczba wypozyczonych</td>
+                                        <!--/*@thymesVar id="numberOfBorrowedBooks" type="com.library.controllers.UserController"*/-->
+                                        <td th:text="${numberOfBorrowedBooks}"></td>
                                     </tr>
 
                                     <tr>

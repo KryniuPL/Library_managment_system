@@ -16,6 +16,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 
 @Controller
@@ -65,9 +69,13 @@ public class UserController {
     }
 
     @RequestMapping(value = "/profile")
-    public String userProfile(Model model){
+    public String userProfile(Model model)
+    {
         Authentication authentication= SecurityContextHolder.getContext().getAuthentication();
-        model.addAttribute("user",userService.findByUsername(authentication.getName()));
+        User username=userService.findByUsername(authentication.getName());
+        String username2=username.getUsername();
+        model.addAttribute("user",username);
+        model.addAttribute("numberOfBorrowedBooks",userRepository.books(username2));
 
         return "userprofile";
     }
