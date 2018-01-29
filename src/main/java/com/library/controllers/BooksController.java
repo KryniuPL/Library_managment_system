@@ -49,7 +49,7 @@ public class BooksController {
             Long quantity = bookRepository.getQuantity(book.getName(),book.getAuthor(),book.getIsbn());
             bookRepository.update(bookToUpdate.getAuthor(),bookToUpdate.getName(),quantity+1,bookToUpdate.getIsbn(),bookToUpdate.getBookID());
         }else {
-            book.setQuantity(1L);
+            book.setQuantity(1l);
             book.setStatus("free");
             bookRepository.save(book);
         }
