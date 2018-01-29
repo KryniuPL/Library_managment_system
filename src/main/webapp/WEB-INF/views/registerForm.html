@@ -58,10 +58,11 @@
                 </div>
                 <div class="form-group">
                     <div class="col-sm-9">
+                        <label
+                                th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+                                class="validation-message"></label>
                         <input type="text" th:field="*{email}" placeholder="Email"
-                               class="form-control" /> <label
-                            th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
-                            class="validation-message"></label>
+                               class="form-control" />
                     </div>
                 </div>
 
