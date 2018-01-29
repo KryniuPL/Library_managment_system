@@ -132,6 +132,7 @@ public class UserController {
                 if (difference < 0) {
                     daysToCalculate = Math.abs(daysToCalculate);
                     calculatedFine = daysToCalculate * fine;
+                    calculatedFines.add(calculatedFine);
                 } else
                 {
                     calculatedFine=0.0;
@@ -142,10 +143,6 @@ public class UserController {
                 e.printStackTrace();
             }
         }
-
-        System.out.println(userBooks);
-        System.out.println(calculatedFines);
-
         double sum=calculatedFines.stream().mapToDouble(Double::doubleValue).sum();
 
         model.addAttribute("user",username);
