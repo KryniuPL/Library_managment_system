@@ -3,12 +3,13 @@ package com.library.model;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Observable;
 
 /**
  * Odwzorowuje tabelę wypożyczenia z bazy danych
  */
 @Entity
-public class BookBorrow {
+public class BookBorrow extends Observable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -62,6 +63,17 @@ public class BookBorrow {
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
+
+    /**
+     * Myślcie co ma się tu dziać!!!!
+     *
+     * @param status
+     */
+    public void changeUpdate(String status){
+        setChanged();
+        notifyObservers(status);
+    }
+
 
 
 }

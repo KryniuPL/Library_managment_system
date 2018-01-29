@@ -4,15 +4,13 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Odwzorowuje użytkownika z bazy danych
  */
 @Entity
-public class User {
+public class User implements Observer {
 
     private Long userID;
     @NotEmpty(message = "*Please provide your firstname")
@@ -97,6 +95,18 @@ public class User {
     }
 
 
+    /**
+     * Obserwator PART II
+     *
+     * Myśleć co chemy z tym zrobić :)
+     *
+     * @param o
+     * @param arg
+     */
+    @Override
+    public void update(Observable o, Object arg) {
+
+    }
 }
 
 
