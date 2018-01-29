@@ -1,6 +1,9 @@
 package com.library.controllers;
 
+import com.library.model.BookBorrow;
 import com.library.model.User;
+import com.library.repository.BillRepository;
+import com.library.repository.BookBorrowRepository;
 import com.library.repository.UserRepository;
 import com.library.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,13 +23,19 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.List;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Kontroler zarządzający obsługą użytkowników
  */
 @Controller
 public class UserController {
+
+    double fine=0.50;//cena za przetrzymanie za jeden dzień
 
     @Autowired
     private UserService userService;
@@ -36,6 +45,9 @@ public class UserController {
 
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    @Autowired
+    private BillRepository billRepository;
 
     /**
      * Lista użytkowników
@@ -99,11 +111,46 @@ public class UserController {
     @RequestMapping(value = "/profile")
     public String userProfile(Model model)
     {
+        Double calculatedFine;
         Authentication authentication= SecurityContextHolder.getContext().getAuthentication();
         User username=userService.findByUsername(authentication.getName());
         String username2=username.getUsername();
+        List<String> userBooks=userBooks=userRepository.userBooks(username2);
+        List<Double> calculatedFines = new ArrayList<>();
+
+        for (String userBook : userBooks) {
+            Date endDate = billRepository.endDate(username2, userBook);
+            LocalDate now = LocalDate.now();
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            String input1 = now.toString();
+            String input2 = endDate.toString();
+            try {
+                Date date1 = format.parse(input1);
+                Date date2 = format.parse(input2);
+                long difference = date2.getTime() - date1.getTime();
+                long daysToCalculate = TimeUnit.DAYS.convert(difference, TimeUnit.MILLISECONDS);
+                if (difference < 0) {
+                    daysToCalculate = Math.abs(daysToCalculate);
+                    calculatedFine = daysToCalculate * fine;
+                } else
+                {
+                    calculatedFine=0.0;
+                    calculatedFines.add(calculatedFine);
+                }
+
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+
+        System.out.println(userBooks);
+        System.out.println(calculatedFines);
+
+        double sum=calculatedFines.stream().mapToDouble(Double::doubleValue).sum();
+
         model.addAttribute("user",username);
         model.addAttribute("numberOfBorrowedBooks",userRepository.books(username2));
+        model.addAttribute("calculatedFines",sum);
 
         return "userprofile";
     }

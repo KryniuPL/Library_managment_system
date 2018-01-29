@@ -35,4 +35,8 @@ public interface UserRepository extends JpaRepository<User, Long>{
      */
     @Query(value = "SELECT COUNT(BookBorrow.borrowID) from BookBorrow,User WHERE BookBorrow.user_userID=User.userID and User.username=?1",nativeQuery = true)
     int books(String username);
+
+
+    @Query(value = "SELECT Book.name FROM BookBorrow,User,Book WHERE BookBorrow.book_bookID=Book.bookID AND BookBorrow.user_userID=User.userID AND User.username=?1",nativeQuery =true)
+    List<String> userBooks(String username);
 }
