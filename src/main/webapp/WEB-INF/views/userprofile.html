@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="en"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
       xmlns:th="http://www.thymeleaf.org">
@@ -49,7 +49,7 @@
                                     </tbody>
                                 </table>
 
-                                <a href="#" class="btn btn-primary">Wyloguj</a>
+                                <a th:href="@{/logout}" class="btn btn-primary">Wyloguj</a>
                             </div>
                         </div>
                     </div>
@@ -60,8 +60,8 @@
                                 <a th:href="'/deletethisuser'" data-original-title="Remove this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
                             </span>
                     </div>
-
                 </div>
+                <a th:href="@{/home}" class="btn btn-md btn-success" type="Submit">Powrót</a>
             </div>
         </div>
     </div>
