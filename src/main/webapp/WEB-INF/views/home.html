@@ -4,8 +4,8 @@
         xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
 <head>
-    <title sec:authorize="hasAuthority('ADMIN')">Admin Page</title>
-    <title sec:authorize="hasAuthority('USER')">User Page</title>
+    <title sec:authorize="hasAuthority('ADMIN')">Panel Administratora</title>
+    <title sec:authorize="hasAuthority('USER')">Panel Użytkownika</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -16,7 +16,7 @@
 
     <form th:action="@{/logout}" method="get">
         <button class="btn btn-md btn-danger btn-block" name="registration"
-                type="Submit">Logout</button>
+                type="Submit">Wyloguj</button>
     </form>
 
     <div class="panel-group" style="margin-top:40px">
@@ -45,7 +45,7 @@
                     <br>
                 </div>
                 <div sec:authorize="hasAuthority('USER')">
-                    This content is only shown to <b>users</b>.
+                    Ta treść jest dostępna tylko dla <b>użytkowników</b>.
                 </div>
             </div>
             <p class="admin-message-text text-center" th:utext="${adminMessage}"></p>

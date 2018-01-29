@@ -11,27 +11,27 @@
 
 <body>
 <form th:action="@{/}" method="get">
-    <button class="btn btn-md btn-success btn-block" type="Submit">Go To Home Page</button>
+    <button class="btn btn-md btn-success btn-block" type="Submit">Strona Domowa</button>
 </form>
 <form th:action="@{/register}" method="get">
-    <button class="btn btn-md btn-warning btn-block" type="Submit">Go To Registration Page</button>
+    <button class="btn btn-md btn-warning btn-block" type="Submit">Rejestracja</button>
 </form>
 
 <div class="container">
 
     <form th:action="@{/login}" method="POST" class="form-signin">
-        <h3 class="form-signin-heading" th:text="Welcome"></h3>
+        <h3 class="form-signin-heading" th:text="Witaj"></h3>
         <br/>
 
-        <input type="text" id="username" name="username"  th:placeholder="Username"
+        <input type="text" id="username" name="username"  th:placeholder="Nazwa użytkownika"
                class="form-control" /> <br/>
-        <input type="password"  th:placeholder="Password"
+        <input type="password"  th:placeholder="Hasło"
                id="password" name="password" class="form-control" /> <br />
 
         <div align="center" th:if="${param.error}">
-            <p style="font-size: 20; color: #FF1C19;">Username or Password invalid, please verify</p>
+            <p style="font-size: 20; color: #FF1C19;">Nazwa użytkownika lub hasło jest nieprawidłowe. Spróbuj ponownie.</p>
         </div>
-        <button class="btn btn-lg btn-primary btn-block" name="Submit" value="Login" type="Submit" th:text="Login"></button>
+        <button class="btn btn-lg btn-primary btn-block" name="Submit" value="Login" type="Submit" th:text="Zaloguj"></button>
     </form>
 </div>
 </body>
