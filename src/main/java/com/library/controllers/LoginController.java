@@ -74,7 +74,7 @@ public class LoginController {
         User userExists=userService.findByUsername(user.getUsername());
         if(userExists!=null)
         {
-            bindingResult.rejectValue("username","error.username","There is already a user registered with the username provided");
+            bindingResult.rejectValue("username","error.username","Użytkownik z podanym loginem już istnieje");
         }
         if(bindingResult.hasErrors())
         {
@@ -82,7 +82,7 @@ public class LoginController {
         }
         else {
             userService.saveUser(user);
-            modelAndView.addObject("successMessage","User has been registered successfully");
+            modelAndView.addObject("successMessage","Konto utworzono pomyślnie");
             modelAndView.addObject("user",new User());
             modelAndView.setViewName("registerForm");
         }
@@ -101,7 +101,7 @@ public class LoginController {
         Authentication authentication= SecurityContextHolder.getContext().getAuthentication();
         User user=userService.findByUsername(authentication.getName());
 
-            modelAndView.addObject("username", "Welcome" + " " + user.getFirstname() + "" + user.getSurname() + " (" + user.getEmail() + ")");
+            modelAndView.addObject("username", "Witaj" + " " + user.getFirstname() + "" + user.getSurname() + " (" + user.getEmail() + ")");
             modelAndView.setViewName("/home");
             return modelAndView;
     }

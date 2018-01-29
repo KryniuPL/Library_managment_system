@@ -21,7 +21,7 @@ public class Bill {
     }
 
     public void setBillID(int billID) {
-        this.billID = billID;git a
+        this.billID = billID;
     }
 
     public User getUserID() {

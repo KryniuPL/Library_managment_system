@@ -13,16 +13,16 @@ import java.util.*;
 public class User implements Observer {
 
     private Long userID;
-    @NotEmpty(message = "*Please provide your firstname")
+    @NotEmpty(message = "*Pole imię nie może być puste")
     private String firstname;
-    @NotEmpty(message = "*Please provide your lastname")
+    @NotEmpty(message = "*Pole nazwisko nie może być puste")
     private String surname;
-    @NotEmpty(message = "*Please provide your login name")
+    @NotEmpty(message = "*Pole login nie może być puste")
     private String username;
-    @NotEmpty(message = "*Please provide your password")
+    @NotEmpty(message = "*Pole hasło nie może być puste")
     private String password;
-    @Email(message = "*Please provide a valid email")
-    @NotEmpty(message = "*Please provide an email")
+    @Email(message = "*Podaj prawidłowy adres e-mail")
+    @NotEmpty(message = "*Pole e-mail nie może być puste")
     private String email;
     private int active;
     private Set<Role> roles = new HashSet<>(0);
