@@ -4,7 +4,7 @@
       xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>Profil</title>
+    <title>Profil użytkownika</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -38,17 +38,14 @@
                                         <td th:text="${user.email}"></td>
                                     </tr>
                                     <tr>
-                                        <td>Wypozyczone</td>
+                                        <td>Wypożyczone książki</td>
                                         <!--/*@thymesVar id="numberOfBorrowedBooks" type="com.library.controllers.UserController"*/-->
                                         <td th:text="${numberOfBorrowedBooks}"></td>
                                     </tr>
-
                                     <tr>
-                                    <tr>
-                                        <td>Zalegla kwota???</td>
-                                        <td>KAPPA</td>
+                                        <td>Kara za przetrzymanie</td>
+                                        <td>InProgress</td>
                                     </tr>
-
                                     </tbody>
                                 </table>
 
