@@ -12,10 +12,11 @@ import org.springframework.stereotype.Service;
 import java.util.Arrays;
 import java.util.HashSet;
 
+/**
+ * Operacje na użytkownikach
+ */
 @Service("userService")
 public class UserServiceImpl implements UserService {
-
-
 
     @Autowired
     private UserRepository userRepository;
@@ -26,11 +27,23 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    /**
+     * Znajdź użytkownika po nazwie
+     *
+     * @param username nazwa użytkownika
+     *
+     * @return userRepository.findByUsername(username); zwraca odwołanie do znalezionego użytkownika
+     */
     @Override
     public User findByUsername(String username) {
         return userRepository.findByUsername(username);
     }
 
+    /**
+     * Zapisuje użytkownika i ustawia dla niego rolę
+     *
+     * @param user użytkownik
+     */
     @Override
     public void saveUser(User user)
     {

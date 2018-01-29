@@ -6,6 +6,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+/**
+ * Odwzorowuje książkę z bazy danych
+ */
 @Entity
 public class Book {
 

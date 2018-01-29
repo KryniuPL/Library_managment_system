@@ -4,9 +4,11 @@ package com.library.model;
 import javax.persistence.*;
 import java.util.Date;
 
+/**
+ * Odwzorowuje tabelę wypożyczenia z bazy danych
+ */
 @Entity
 public class BookBorrow {
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

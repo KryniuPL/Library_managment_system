@@ -1,6 +1,5 @@
 package com.library.config;
 
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -13,20 +12,25 @@ import org.thymeleaf.spring4.dialect.SpringStandardDialect;
 import org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 
-
+/**
+ * Ustawia producenta widoków oraz szyfrowanie haseł
+ */
 @Configuration
 @EnableWebMvc
 @ComponentScan("com.library")
 public class WebConfig extends WebMvcConfigurerAdapter {
 
+    /**
+     * Zwraca zaszyfrowane hasła
+     *
+     * @return bCryptPasswordEncoder
+     */
     @Bean
     public BCryptPasswordEncoder passwordEncoder()
     {
         BCryptPasswordEncoder bCryptPasswordEncoder=new BCryptPasswordEncoder();
         return bCryptPasswordEncoder;
     }
-
-
 
     @Bean
     public SpringTemplateEngine templateEngine() {

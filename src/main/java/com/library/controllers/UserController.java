@@ -22,6 +22,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 
+/**
+ * Kontroler zarządzający obsługą użytkowników
+ */
 @Controller
 public class UserController {
 
@@ -34,6 +37,11 @@ public class UserController {
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    /**
+     * Lista użytkowników
+     *
+     * @return "allusers"
+     */
     @RequestMapping(value = "/allusers", method = RequestMethod.GET)
     public String showAllUsers(Model model){
         List<User> userList = userRepository.findAll();
@@ -41,6 +49,11 @@ public class UserController {
         return "allusers";
     }
 
+    /**
+     * Usuwanie użytkownika
+     *
+     * @return "redirect:/allusers" przekierowuje na listę użytkowników
+     */
     @RequestMapping(value = "/deleteuser", method = RequestMethod.GET)
     public String deleteUser(){
         Authentication authentication= SecurityContextHolder.getContext().getAuthentication();
@@ -49,6 +62,11 @@ public class UserController {
         return "redirect:/allusers";
     }
 
+    /**
+     * Usuwanie użytkownika
+     *
+     * @return "redirect:/allusers" przekierowuje na stronę logowania
+     */
     @RequestMapping(value = "/deletethisuser", method = RequestMethod.GET)
     public String deleteThisUser(){
         Authentication authentication= SecurityContextHolder.getContext().getAuthentication();
@@ -57,6 +75,11 @@ public class UserController {
         return "redirect:/login";
     }
 
+    /**
+     * Wyszukiwanie użytkowników
+     *
+     * @return "allusers" zwraca widok na listę użytkowników
+     */
     //Can go wrong with mapping
     @RequestMapping(value="/allusers/search", method = RequestMethod.POST)
     public String searchUsers(@Valid @ModelAttribute("phrase") String phrase, Model model){
@@ -68,6 +91,11 @@ public class UserController {
         return "allusers";
     }
 
+    /**
+     * Profil użytkownika
+     *
+     * @return "ruserprofile" zwraca widok na profil użytkownika
+     */
     @RequestMapping(value = "/profile")
     public String userProfile(Model model)
     {
@@ -80,6 +108,11 @@ public class UserController {
         return "userprofile";
     }
 
+    /**
+     * Edytowanie danych użytkownika
+     *
+     * @return "edituser" zwraca widok na edycję użytkownika
+     */
     @RequestMapping("/edituser")
     public String editUser(Model model){
         Authentication authentication= SecurityContextHolder.getContext().getAuthentication();
@@ -87,11 +120,15 @@ public class UserController {
         return "edituser";
     }
 
+    /**
+     * Zapisuje edytowanego użytkownika
+     *
+     * @return "redirect:/profile" przekierowuje na profil użytkownika
+     */
     @RequestMapping(value = "/saveediteduser",method = RequestMethod.POST)
     public String saveEditedUser(@Valid @ModelAttribute("user") User user){
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         userRepository.update(user.getFirstname(),user.getSurname(),user.getUsername(),user.getPassword(),user.getEmail(),user.getUserID());
         return "redirect:/profile";
     }
-
 }

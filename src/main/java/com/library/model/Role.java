@@ -2,7 +2,9 @@ package com.library.model;
 
 import javax.persistence.*;
 
-
+/**
+ * Odwzorowuje role użytkowników z bazy
+ */
 @Entity
 public class Role {
     private Integer roleID;

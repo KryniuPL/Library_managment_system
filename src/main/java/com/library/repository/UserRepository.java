@@ -9,23 +9,30 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-
+/**
+ * Tworzy repozytorium danych z klasy User
+ */
 public interface UserRepository extends JpaRepository<User, Long>{
-
-    /*
-    Custom queries below
-     */
 
     User findByUsername(String username);
 
+    /**
+     * Zapytanie znajdujące użytkownika po nazwie
+     */
     @Query("select u from User u where u.firstname like %?1% OR u.surname like %?1% OR u.username like %?1% OR u.email like %?1%")
     List<User> findPhrase(String phrase);
 
+    /**
+     * Zapytanie aktualizujące dane użytkownika
+     */
     @Modifying
     @Transactional
     @Query("update User u set u.firstname=?1, u.surname=?2, u.username=?3, u.password=?4, u.email=?5 where u.userID=?6")
     void update(String firstname, String surname, String username, String password, String email, Long id);
 
+    /**
+     * Zapytanie wyświetlające liczbę wypożyczonych książek do profilu użytkownika
+     */
     @Query(value = "SELECT COUNT(BookBorrow.borrowID) from BookBorrow,User WHERE BookBorrow.user_userID=User.userID and User.username=?1",nativeQuery = true)
     int books(String username);
 }

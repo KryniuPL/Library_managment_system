@@ -1,6 +1,5 @@
 package com.library.config;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,14 +18,15 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import javax.sql.DataSource;
 import java.util.Properties;
 
+/**
+ * Odpowiada za połączenie aplikacji z bazą danych.
+ */
 @Configuration
 @EnableTransactionManagement
 public class DatabaseConfig {
 
     @Autowired
     private Environment environment;
-
-
 
     @Primary
     @Bean(name="mysqlDB")

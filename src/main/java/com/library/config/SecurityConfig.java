@@ -1,7 +1,5 @@
 package com.library.config;
 
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,13 +16,21 @@ import org.springframework.security.web.access.AccessDeniedHandler;
 
 import javax.sql.DataSource;
 
+/**
+ * Zarządza bezpieczeństwem aplikacji
+ */
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig  extends WebSecurityConfigurerAdapter {
 
-
+   /**
+    * Zapytanie wyszukujące użytkownika o podanym loginie
+    */
    public static final String DEF_USERS_BY_USERNAME_QUERY="SELECT User.username,User.password,active from User where User.username=?";
+   /**
+    * Zapytanie pobierające rolę użytkownika
+    */
    public static final String DEF_AUTHORITIES_BY_USERNAME_QUERY="select User.username, Role.name from User,Role,User_Role where User.userID=User_Role.user_userID and User_Role.roles_roleID=Role.roleID and username= ?";
 
    @Autowired
@@ -33,10 +39,13 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {
    @Autowired
    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-
+   /**
+    * Ustawia dostęp do widoków
+    *
+    * @param httpSecurity
+    */
    protected void configure(HttpSecurity httpSecurity) throws Exception
    {
-
       httpSecurity.
               authorizeRequests()
               .antMatchers("/").permitAll()
@@ -55,9 +64,13 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {
               .and().logout()
               .logoutSuccessUrl("/").and().exceptionHandling()
               .accessDeniedPage("/accessdenied");
-
-
    }
+
+   /**
+    * Autoryzacja użytkownika
+    *
+    * @param authorization
+    */
    @Override
    protected void configure(AuthenticationManagerBuilder authorization) throws Exception
    {
@@ -69,6 +82,4 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {
               .dataSource(dataSource)
               .passwordEncoder(new BCryptPasswordEncoder());
    }
-
-
 }

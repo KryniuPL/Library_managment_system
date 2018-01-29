@@ -24,9 +24,11 @@ import java.sql.Statement;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
+/**
+ * Kontroler zarządzający logowaniem i rejestracją
+ */
 @Controller
 public class LoginController {
-
 
     @Autowired
     private UserService userService;
@@ -34,6 +36,11 @@ public class LoginController {
     @Autowired
     private RoleRepository roleRepository;
 
+    /**
+     * Strona logowania
+     *
+     * @return modelAndView
+     */
     @RequestMapping(value={"/login"}, method = RequestMethod.GET)
     public ModelAndView login(){
         ModelAndView modelAndView = new ModelAndView();
@@ -41,6 +48,11 @@ public class LoginController {
         return modelAndView;
     }
 
+    /**
+     * Strona rejestracji
+     *
+     * @return modelAndView
+     */
     @RequestMapping(value="/register", method = RequestMethod.GET)
     public ModelAndView registration(){
         ModelAndView modelAndView = new ModelAndView();
@@ -50,6 +62,11 @@ public class LoginController {
         return modelAndView;
     }
 
+    /**
+     * Obsługa walidacji danych podanych przy rejestracji
+     *
+     * @return modelAndView
+     */
     @RequestMapping(value = "/register",method = RequestMethod.POST)
     public ModelAndView createNewUser(@Valid User user, BindingResult bindingResult)
     {
@@ -72,7 +89,11 @@ public class LoginController {
         return modelAndView;
     }
 
-
+    /**
+     * Strona domowa
+     *
+     * @return modelAndView
+     */
     @RequestMapping(value = "/home",method = RequestMethod.GET)
     public ModelAndView home()
     {
@@ -84,5 +105,4 @@ public class LoginController {
             modelAndView.setViewName("/home");
             return modelAndView;
     }
-
 }

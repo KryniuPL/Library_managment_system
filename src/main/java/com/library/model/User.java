@@ -8,10 +8,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-
+/**
+ * Odwzorowuje użytkownika z bazy danych
+ */
 @Entity
 public class User {
-
 
     private Long userID;
     @NotEmpty(message = "*Please provide your firstname")

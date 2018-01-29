@@ -1,6 +1,5 @@
 package com.library.controllers;
 
-
 import com.library.model.Book;
 import com.library.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,18 +11,31 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
+/**
+ * Kontroler obsługujący operacje na repozytorium książki
+ */
 @Controller
 public class BooksController {
 
     @Autowired
     private BookRepository bookRepository;
 
+    /**
+     * Zwraca widok na książki
+     *
+     * @return "addbook" zwraca widok na addbook
+     */
     @RequestMapping(value = "/addbook", method = RequestMethod.GET)
     public String showAddBookForm(Model model) {
         model.addAttribute("book", new Book());
         return "addbook";
     }
 
+    /**
+     * Dodawanie nowej książki
+     *
+     * @return "redirect:/allbooks" przekierowuje na widok allbooks
+     */
     @RequestMapping(value = "/addbook", method = RequestMethod.POST)
     public String addBook(@Valid @ModelAttribute("book") Book book, Model model, BindingResult bindingResult){
         if (bindingResult.hasErrors()) {
@@ -44,6 +56,11 @@ public class BooksController {
         return "redirect:/allbooks";
     }
 
+    /**
+     * Lista wszystkich książek
+     *
+     * @return "allbooks" zwraca widok na allbooks
+     */
     @RequestMapping(value = "/allbooks", method = RequestMethod.GET)
     public String getAllBooks(Model model) {
         List<Book> bookList = bookRepository.findAll();
@@ -51,6 +68,11 @@ public class BooksController {
         return "allbooks";
     }
 
+    /**
+     * Wyszukiwanie książek
+     *
+     * return "allbooks" zwraca widok na allbooks
+     */
     //Sometimes mapping redirects to: /allbooks/allbooks/search
     @RequestMapping(value="/allbooks/search", method = RequestMethod.POST)
     public String searchBooks(@Valid @ModelAttribute("phrase") String phrase, Model model){
@@ -62,18 +84,33 @@ public class BooksController {
         return "allbooks";
     }
 
+    /**
+     * Usuwanie książki
+     *
+     * @return "redirect:/allbooks" przekierowuje na widok allbooks
+     */
     @RequestMapping(value = "/deletebook/{id}", method = RequestMethod.GET)
     public String deleteBook(@PathVariable("id") Long id){
         bookRepository.delete(id);
         return "redirect:/allbooks";
     }
 
+    /**
+     * Aktualizowowanie danych książki
+     *
+     * @return "updatebookform" zwraca widok na updatebookform
+     */
     @RequestMapping(value = "/updatebook/{id}", method = RequestMethod.GET)
     public String updateBook(@PathVariable("id") Long id, Model model){
         model.addAttribute("book",bookRepository.findOne(id));
         return "updatebookform";
     }
 
+    /**
+     * Zapisuje aktualizowaną książkę
+     *
+     * @return "redirect:/allbooks" przekierowuje na widok allbooks
+     */
     @RequestMapping(value = "/updatebook/save", method = RequestMethod.POST)
     public String saveUpdateBook(@Valid @ModelAttribute("book") Book book, Model model){
         model.addAttribute("author",book.getAuthor());
@@ -83,6 +120,11 @@ public class BooksController {
         return "redirect:/allbooks";
     }
 
+    /**
+     * Sortuje książki
+     *
+     * @return "redirect:/allbooks" przekierowuje na widok allbooks
+     */
     @RequestMapping(value = "/sortbooks/{id}",method = RequestMethod.GET)
     public String sortBooks(@PathVariable("id") Integer id, Model model){
         switch (id){
