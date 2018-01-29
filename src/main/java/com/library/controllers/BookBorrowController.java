@@ -69,6 +69,12 @@ public class BookBorrowController{
         Book bookname=bookRepository.findByBookID(tmp);
         bookBorrow.setUser(user);
         bookBorrow.setBook(bookname);
+
+        /*
+            !!!!
+         */
+        bookBorrow.addObserver(user);
+
         Book book=new Book();
         bookBorrowRepository.save(bookBorrow);
         bookRepository.updateStatus("issued",tmp);

@@ -2,6 +2,7 @@ package com.library.model;
 
 
 import javax.persistence.*;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.Observable;
 
@@ -64,12 +65,21 @@ public class BookBorrow extends Observable {
         this.endDate = endDate;
     }
 
-    /**
-     * Myślcie co ma się tu dziać!!!!
-     *
-     * @param status
-     */
-    public void changeUpdate(String status){
+    public int compareDate(){
+        Date currDate = new Date();
+        if (Math.abs(ChronoUnit.DAYS.between(endDate.toInstant(), currDate.toInstant())) <= 7)
+            return 2;
+        else
+            return endDate.compareTo(currDate);
+    }
+
+    public void checkDate(){
+        int result = compareDate();
+        if (result == 1 || result == 2)
+            changeUpdate(result);
+    }
+
+    private void changeUpdate(int status){
         setChanged();
         notifyObservers(status);
     }

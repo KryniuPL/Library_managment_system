@@ -8,7 +8,7 @@ public class Bill {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int billID;
+    private Long billID;
     private float fine;
     @ManyToOne(cascade = CascadeType.ALL)
     private User userID;
@@ -16,11 +16,11 @@ public class Bill {
     private BookBorrow bookBorrowID;
 
 
-    public int getBillID() {
+    public Long getBillID() {
         return billID;
     }
 
-    public void setBillID(int billID) {
+    public void setBillID(Long billID) {
         this.billID = billID;
     }
 
