@@ -41,7 +41,7 @@
             <td th:text="${user.surname}"></td>
             <td th:text="${user.username}"></td>
             <td th:text="${user.email}"></td>
-            <td> BRAK IMPLEMENTACJI</td>
+            <td>BRAK IMPLEMENTACJI</td>
             <td sec:authorize="hasAuthority('ADMIN')"><a th:href="'/deleteuser/' + ${user.userID}">Usuń</a></td>
 
         </tr>
