@@ -55,6 +55,7 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {
               .antMatchers("/web-resources/libstyle.css").permitAll()
               .antMatchers("/css/registration.css").permitAll()
               .antMatchers("/bookborrow").hasAuthority("ADMIN")
+              .antMatchers("/addbook").hasAuthority("ADMIN")
               .antMatchers("/home").hasAnyAuthority("ADMIN","USER").anyRequest()
               .authenticated().and().csrf().disable().formLogin()
               .loginPage("/login").failureUrl("/login?error=true")

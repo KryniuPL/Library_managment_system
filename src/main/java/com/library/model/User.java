@@ -31,7 +31,10 @@ public class User implements Observer {
     private Stack<String> notes = new Stack<>();
 
     public String getNote() {
-        return notes.pop();
+        if(!notes.empty())
+            return notes.pop();
+        else
+            return null;
     }
 
     public void setNote(String note) {

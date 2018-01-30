@@ -100,6 +100,7 @@ public class LoginController {
     {
         ModelAndView modelAndView=new ModelAndView();
         Authentication authentication= SecurityContextHolder.getContext().getAuthentication();
+        System.out.println("cos sie zepsulo");
         User user=userService.findByUsername(authentication.getName());
 
         ArrayList<String> notes = new ArrayList<>();
