@@ -43,22 +43,22 @@
             <form action="#" th:action="@{save}" th:object="${book}" method="post">
                 <div class="row">
                     <div class="form-group col-xs-4">
-                    <p><input type="text" class="form-control" id="author" title="Autor" th:field="*{author}" placeholder="Autor" /></p>
+                    <p><input type="text" class="form-control" id="author" title="Autor" th:field="*{author}" placeholder="Autor" required="required"/></p>
                  </div>
               </div>
                 <div class="row">
                     <div class="form-group col-xs-4">
-                        <p><input type="text" class="form-control" id="name" title="Nazwa" th:field="*{name}" placeholder="Nazwa" /></p>
+                        <p><input type="text" class="form-control" id="name" title="Nazwa" th:field="*{name}" placeholder="Nazwa" required="required"/></p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-xs-4">
-                        <p><input type="number" class="form-control" id="isbn" title="ISBM" th:field="*{isbn}" placeholder="ISBN" /></p>
+                        <p><input type="number" class="form-control" id="isbn" title="ISBM" th:field="*{isbn}" placeholder="ISBN" required="required"/></p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-xs-4">
-                        <p><input type="number" class="form-control" id="quantity" title="Ilość" th:field="*{quantity}" placeholder="Ilość" /></p>
+                        <p><input type="number" class="form-control" id="quantity" title="Ilość" th:field="*{quantity}" placeholder="Ilość" required="required"/></p>
                     </div>
                 </div>
                 <p><input type="hidden" class="form-control" id="bookID" title="ID" th:field="*{bookID}" /></p>
