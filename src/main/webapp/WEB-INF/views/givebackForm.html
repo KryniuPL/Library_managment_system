@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Oddanie książki</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <h1 class="display-4">Oddaj książkę</h1>
+    <br>
+    <div class="container">
+        <table class="table table-bordered" id="dataTable" cellspacing="0">
+            <thead>
+            <tr>
+                <th>Nazwa</th>
+                <th>Autor</th>
+                <th>Cena</th>
+                <th>Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!--/*@thymesVar id="bookShow" type="com.library.model.Book"*/-->
+            <tr>
+                <td th:text="${bookShow.name}"></td>
+                <td th:text="${bookShow.author}"></td>
+                <td th:text="${bookShow.quantity}"></td>
+                <td th:text="${bookShow.status}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <!--/*@thymesVar id="bookBorrow" type="com.library.model.BookBorrow"*/-->
+    <!--/*@thymesVar id="bookID" type="Int"*/-->
+    <!--/*@thymesVar id="username" type="String"*/-->
+    <div class="container">
+        <form action="#" th:action="@{save}" th:object="${bookBorrow}" method="post">
+            <div class="row">
+                <div class="form-group col-xs-4">
+                    <p><input type="text" class="form-control" id="username" name="username" title="Search" placeholder="Nazwa użytkownika" /></p>
+                </div>
+            </div>
+            <p><input type="hidden" class="form-control" id="bookname" title="bookname" th:field="*{book.bookID}" /></p>
+            <p><button class="btn .btn-md btn-primary " name="Update" value="Update" type="Submit" th:text="Oddaj"></button> <button class="btn .btn-md btn-primary " name="Reset" value="Reset" type="Reset" th:text="Resetuj"></button></p>
+        </form>
+    </div>
+</div>
+</body>
+</html>

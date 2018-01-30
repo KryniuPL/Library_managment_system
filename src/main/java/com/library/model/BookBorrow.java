@@ -18,9 +18,9 @@ public class BookBorrow extends Observable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long borrowID;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private User user;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private Book book;
     @Temporal(TemporalType.DATE)
     private Date startDate;

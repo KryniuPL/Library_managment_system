@@ -27,6 +27,7 @@ import java.util.TimeZone;
 public class BookBorrowController{
 
     Long tmp;
+
     @Autowired
     private BookBorrowRepository bookBorrowRepository;
 
@@ -50,6 +51,27 @@ public class BookBorrowController{
         model.addAttribute("bookBorrow",bookBorrow);
         return "bookborrowForm";
     }
+
+    @RequestMapping(value = "/giveback/{id}", method = RequestMethod.GET)
+    public String giveback(@PathVariable("id") Long id, Model model)
+    {
+        BookBorrow  requestedBook= new BookBorrow();
+        requestedBook.setBook(bookRepository.findOne(id));
+        tmp=id;
+        model.addAttribute("bookShow",requestedBook.getBook());
+        model.addAttribute("bookBorrow",requestedBook);
+        return "givebackForm";
+    }
+
+    @RequestMapping(value = "/giveback/save", method = RequestMethod.POST)
+    public String saveGiveBack(@Valid @ModelAttribute("bookborrow") BookBorrow bookBorrow, @Valid @ModelAttribute("username")String username, Model model)
+    {
+        Long bookID=bookBorrowRepository.findBorrowIDByBookID(tmp);
+        bookBorrowRepository.delete(bookID);
+        bookRepository.updateStatus("free",tmp);
+        return "redirect:/allbooks";
+    }
+
 
     /**
      * Zapisanie wypożyczenia książki
