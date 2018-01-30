@@ -1,5 +1,11 @@
 package com.library.config;
 
+/**
+ * Zawiera stałe i zmienne statyczne potrzebne do implementacji logiki
+ *
+ *Ze względu na możliwość potrzeby zmiany pewnych ustawień gromadzimy je w jednym miejscu
+ */
+
 public class LibrarySetupConfig {
     public static double FEE = 0.5;
 
