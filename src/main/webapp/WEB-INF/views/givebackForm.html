@@ -42,7 +42,7 @@
         <form action="#" th:action="@{save}" th:object="${bookBorrow}" method="post">
             <div class="row">
                 <div class="form-group col-xs-4">
-                    <p><input type="text" class="form-control" id="username" name="username" title="Search" placeholder="Nazwa użytkownika" /></p>
+                    <p><input type="text" class="form-control" id="username" name="username" title="Search" placeholder="Nazwa użytkownika" required="required"/></p>
                 </div>
             </div>
             <p><input type="hidden" class="form-control" id="bookname" title="bookname" th:field="*{book.bookID}" /></p>
