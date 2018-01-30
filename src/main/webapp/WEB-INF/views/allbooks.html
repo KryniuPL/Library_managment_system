@@ -33,6 +33,7 @@
                 <th sec:authorize="hasAuthority('ADMIN')">Aktualizuj</th>
                 <th sec:authorize="hasAuthority('ADMIN')">Usuń</th>
                 <th sec:authorize="hasAuthority('ADMIN')">Wypożycz</th>
+                <th sec:authorize="hasAuthority('ADMIN')">Oddaj książkę</th>
             </tr>
             </thead>
             <tbody>
@@ -47,6 +48,7 @@
                 <td sec:authorize="hasAuthority('ADMIN')"><a th:href="'/updatebook/' + ${book.bookID}">Aktualizuj</a></td>
                 <td sec:authorize="hasAuthority('ADMIN')"><a th:href="'/deletebook/' + ${book.bookID}">Usuń</a></td>
                 <td sec:authorize="hasAuthority('ADMIN')"><a th:href="'/bookborrow/' + ${book.bookID}">Wypożycz</a></td>
+                <td sec:authorize="hasAuthority('ADMIN')"><a th:href="'/bookborrow/' + ${book.bookID}">Oddaj książkę</a></td>
             </tr>
             </tbody>
         </table>

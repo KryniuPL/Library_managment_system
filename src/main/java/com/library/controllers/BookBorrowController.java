@@ -71,9 +71,7 @@ public class BookBorrowController{
         bookBorrow.setUser(user);
         bookBorrow.setBook(bookname);
 
-        /*
-            !!!!
-         */
+
         bookBorrow.addObserver(user);
 
         bookBorrowRepository.save(bookBorrow);
