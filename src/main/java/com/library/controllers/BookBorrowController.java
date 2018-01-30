@@ -54,7 +54,7 @@ public class BookBorrowController{
     public String showBorrowedBooks(@PathVariable("id") Long id, Model model)
     {
         System.out.println(id);
-        String borrowedBooks=bookBorrowRepository.borrowedBooks(id);
+        List borrowedBooks=bookBorrowRepository.borrowedBooks(id);
         System.out.println(bookBorrowRepository.borrowedBooks(id));
         System.out.println(borrowedBooks);
         return "borrowedBooks";
