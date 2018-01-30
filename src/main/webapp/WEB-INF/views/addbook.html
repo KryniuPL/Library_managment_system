@@ -21,17 +21,17 @@
             <form action="#" th:action="@{addbook}" th:object="${book}" method="post">
                 <div class="row">
                     <div class="form-group col-xs-4">
-                        <p><input  type="text" class="form-control" id="author" title="Autor" th:field="*{author}" placeholder="Autor" requried="required"/></p>
+                        <p><input  type="text" class="form-control" id="author" title="Autor" th:field="*{author}" placeholder="Autor"  required="required"/></p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-xs-4">
-                        <p><input type="text" class="form-control" id="name" title="Nazwa" th:field="*{name}" placeholder="Nazwa" requried="required"/></p>
+                        <p><input type="text" class="form-control" id="name" title="Nazwa" th:field="*{name}" placeholder="Nazwa" required="required"/></p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-xs-4">
-                         <p><input type="text" class="form-control" id="isbn" title="ISBN" th:field="*{isbn}" placeholder="ISBN" requried="required"/></p>
+                         <p><input type="text" class="form-control" id="isbn" title="ISBN" th:field="*{isbn}" placeholder="ISBN" required="required"/></p>
                     </div>
                 </div>
                 <p><button class="btn .btn-md btn-primary" name="Add" value="Add" type="Submit" th:text="Dodaj"></button> <button class="btn .btn-md btn-primary" name="Reset" value="Reset" type="Reset" th:text="Resetuj"></button></p>
