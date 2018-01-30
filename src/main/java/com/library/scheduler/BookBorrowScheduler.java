@@ -9,12 +9,12 @@ import org.springframework.scheduling.annotation.Scheduled;
 
 import java.util.List;
 
-//@Configuration
+@Configuration
 @EnableScheduling
 public class BookBorrowScheduler {
 
-    //@Autowired
-    BookBorrowRepository bookBorrowRepository;
+    @Autowired
+    private BookBorrowRepository bookBorrowRepository;
 
     @Scheduled(cron = "0 0 0 1/1 * ? *")
     public void checkBorrows(){

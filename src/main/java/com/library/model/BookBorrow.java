@@ -67,7 +67,8 @@ public class BookBorrow extends Observable {
 
     public int compareDate(){
         Date currDate = new Date();
-        if (Math.abs(ChronoUnit.DAYS.between(endDate.toInstant(), currDate.toInstant())) <= 7)
+        Long daysBetween = ChronoUnit.DAYS.between(currDate.toInstant(), endDate.toInstant());
+        if (daysBetween <= 7 && daysBetween >= 0)
             return 2;
         else
             return endDate.compareTo(currDate);
@@ -75,7 +76,7 @@ public class BookBorrow extends Observable {
 
     public void checkDate(){
         int result = compareDate();
-        if (result == 1 || result == 2)
+        if (result == -1 || result == 2)
             changeUpdate(result);
     }
 

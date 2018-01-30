@@ -17,11 +17,13 @@ public class BookBorrowTest {
     @Test
     public void testDataComparatorSmaller(){
 
+        System.out.println("Smaller");
+
         bookBorrow.setEndDate(new GregorianCalendar(2018,0,20).getTime());
         Date currDate = new Date();
-        System.out.println(currDate);
-        System.out.println(bookBorrow.getEndDate());
-        System.out.println(ChronoUnit.DAYS.between(bookBorrow.getEndDate().toInstant(), currDate.toInstant()));
+        System.out.println("Dzisiaj: " + currDate);
+        System.out.println("Data oddania: " + bookBorrow.getEndDate());
+        System.out.println(ChronoUnit.DAYS.between(currDate.toInstant(), bookBorrow.getEndDate().toInstant()));
 
         Assert.assertEquals(bookBorrow.compareDate(),-1);
 
@@ -30,11 +32,13 @@ public class BookBorrowTest {
     @Test
     public void testDataComparatorBigger(){
 
+        System.out.println("Bigger");
+
         bookBorrow.setEndDate(new GregorianCalendar(2018,2,30).getTime());
         Date currDate = new Date();
-        System.out.println(currDate);
-        System.out.println(bookBorrow.getEndDate());
-        System.out.println(ChronoUnit.DAYS.between(bookBorrow.getEndDate().toInstant(), currDate.toInstant()));
+        System.out.println("Dzisiaj: " + currDate);
+        System.out.println("Data oddania: " + bookBorrow.getEndDate());
+        System.out.println(ChronoUnit.DAYS.between(currDate.toInstant(), bookBorrow.getEndDate().toInstant()));
 
         Assert.assertEquals(bookBorrow.compareDate(),1);
 
@@ -43,11 +47,13 @@ public class BookBorrowTest {
     @Test
     public void testDataComparatorWeek(){
 
-        bookBorrow.setEndDate(new GregorianCalendar(2018,0,25).getTime());
+        System.out.println("Week");
+
+        bookBorrow.setEndDate(new GregorianCalendar(2018,1,4).getTime());
         Date currDate = new Date();
-        System.out.println(currDate);
-        System.out.println(bookBorrow.getEndDate());
-        System.out.println(ChronoUnit.DAYS.between(bookBorrow.getEndDate().toInstant(), currDate.toInstant()));
+        System.out.println("Dzisiaj: " + currDate);
+        System.out.println("Data oddania: " + bookBorrow.getEndDate());
+        System.out.println(ChronoUnit.DAYS.between(currDate.toInstant(), bookBorrow.getEndDate().toInstant()));
 
         Assert.assertEquals(bookBorrow.compareDate(),2);
 

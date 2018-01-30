@@ -27,6 +27,8 @@ public class User implements Observer {
     private int active;
     private Set<Role> roles = new HashSet<>(0);
 
+    private String note;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public Long getUserID() {
@@ -94,6 +96,13 @@ public class User implements Observer {
         this.roles = roles;
     }
 
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
 
     /**
      * Obserwator PART II
@@ -105,7 +114,10 @@ public class User implements Observer {
      */
     @Override
     public void update(Observable o, Object arg) {
-        System.out.println(arg);
+        if ((int)arg == -1) //Termin przekroczony
+            this.setNote("Termin przekroczony");
+        else
+            this.setNote("Tydzień lub mniej do końca"); //Tydzień lub mniej do końca
     }
 }
 
