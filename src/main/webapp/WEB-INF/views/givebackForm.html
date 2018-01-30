@@ -42,11 +42,12 @@
         <form action="#" th:action="@{save}" th:object="${bookBorrow}" method="post">
             <div class="row">
                 <div class="form-group col-xs-4">
-                    <p><input type="text" class="form-control" id="username" name="username" title="Search" placeholder="Nazwa użytkownika" /></p>
+                    <p><input type="text" class="form-control" id="username" name="username" title="Search" placeholder="Nazwa użytkownika" required="required"/></p>
                 </div>
             </div>
             <p><input type="hidden" class="form-control" id="bookname" title="bookname" th:field="*{book.bookID}" /></p>
             <p><button class="btn .btn-md btn-primary " name="Update" value="Update" type="Submit" th:text="Oddaj"></button> <button class="btn .btn-md btn-primary " name="Reset" value="Reset" type="Reset" th:text="Resetuj"></button></p>
+            <a th:href="@{/allbooks}" class="btn btn-md btn-success" type="Submit">Powrót</a>
         </form>
     </div>
 </div>

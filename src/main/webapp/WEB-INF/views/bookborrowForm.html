@@ -14,6 +14,7 @@
 <div class="container">
     <h1 class="display-4">Wypożyczone książki</h1>
     <br>
+<<<<<<< HEAD
     <table class="table table-bordered" border="1" id="dataTable" cellspacing="0">
         <thead>
         <tr>
@@ -43,6 +44,46 @@
     <th sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/home}" class="btn btn-md btn-success" type="Submit">Strona Domowa</a></th>
     <th sec:authorize="hasAuthority('USER')"><a th:href="@{/home}" class="btn btn-md btn-success" type="Submit">Strona Domowa</a></th>
     <a th:href="@{/}" class="btn btn-md btn-success" type="Submit">Strona Główna</a>
+=======
+    <div class="container">
+        <table class="table table-bordered" id="dataTable" cellspacing="0">
+            <thead>
+            <tr>
+                <th>Nazwa</th>
+                <th>Autor</th>
+                <th>Cena</th>
+                <th>Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!--/*@thymesVar id="bookShow" type="com.library.model.Book"*/-->
+            <tr>
+                <td th:text="${bookShow.name}"></td>
+                <td th:text="${bookShow.author}"></td>
+                <td th:text="${bookShow.quantity}"></td>
+                <td th:text="${bookShow.status}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <!--/*@thymesVar id="bookBorrow" type="com.library.model.BookBorrow"*/-->
+    <!--/*@thymesVar id="bookID" type="Int"*/-->
+    <!--/*@thymesVar id="username" type="String"*/-->
+    <div class="container">
+        <form action="#" th:action="@{save}" th:object="${bookBorrow}" method="post">
+            <div class="row">
+                <div class="form-group col-xs-4">
+                    <p><input type="text" class="form-control" id="username" name="username" title="Search" placeholder="Nazwa użytkownika" required="required"/></p>
+                </div>
+            </div>
+            <p><input type="hidden" class="form-control" id="bookname" title="bookname" th:field="*{book.bookID}" /></p>
+            <p><button class="btn .btn-md btn-primary " name="Update" value="Update" type="Submit" th:text="Wypożycz"></button> <button class="btn .btn-md btn-primary " name="Reset" value="Reset" type="Reset" th:text="Resetuj"></button></p>
+            <a th:href="@{/allbooks}" class="btn btn-md btn-success" type="Submit">Powrót</a>
+        </form>
+    </div>
+>>>>>>> 7b6cbdd0913803f1cbda1d90e8cf1f3e0c29a4a1
 </div>
 </body>
 </html>

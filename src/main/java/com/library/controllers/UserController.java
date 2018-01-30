@@ -14,10 +14,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
@@ -74,10 +72,8 @@ public class UserController {
      *
      * @return "redirect:/allusers" przekierowuje na listę użytkowników
      */
-    @RequestMapping(value = "/deleteuser", method = RequestMethod.GET)
-    public String deleteUser(){
-        Authentication authentication= SecurityContextHolder.getContext().getAuthentication();
-        Long id = userService.findByUsername(authentication.getName()).getUserID();
+    @RequestMapping(value = "/deleteuser/{id}", method = RequestMethod.GET)
+    public String deleteUser(@Valid @PathVariable("id") Long id){
         userRepository.delete(id);
         return "redirect:/allusers";
     }
@@ -101,14 +97,21 @@ public class UserController {
      * @return "allusers" zwraca widok na listę użytkowników
      */
     //Can go wrong with mapping
-    @RequestMapping(value="/allusers/search", method = RequestMethod.POST)
-    public String searchUsers(@Valid @ModelAttribute("phrase") String phrase, Model model){
-        List<User> userList = userRepository.findPhrase(phrase);
-        if(userList.size() == 0)
-            return "redirect:/allusers";
+    @RequestMapping(value="/userssearch", method = RequestMethod.POST)
+    public ModelAndView searchUsers(@Valid @ModelAttribute("phrase") String phrase, ModelAndView model){
+        model.setViewName("allusers");
 
-        model.addAttribute("userList",userList);
-        return "allusers";
+        String warrning = "Nic nie znaleziono!";
+
+
+        List<User> userList = userRepository.findPhrase(phrase);
+        if(userList.size() == 0) {
+            model.addObject("notFoundMessage",warrning);
+            return model;
+        }
+
+        model.addObject("userList",userList);
+        return model;
     }
 
     /**

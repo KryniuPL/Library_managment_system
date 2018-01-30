@@ -58,6 +58,7 @@ public class BookBorrowController{
     {
 
         System.out.println(id);
+<<<<<<< HEAD
         User user1=userRepository.findByUserID(id);
 
 
@@ -69,6 +70,11 @@ public class BookBorrowController{
         model.addAttribute("authors",authors);
         System.out.println(authors);
         System.out.println(notes);
+=======
+        List borrowedBooks=bookBorrowRepository.borrowedBooks(id);
+        System.out.println(bookBorrowRepository.borrowedBooks(id));
+        System.out.println(borrowedBooks);
+>>>>>>> 7b6cbdd0913803f1cbda1d90e8cf1f3e0c29a4a1
         return "borrowedBooks";
     }
 

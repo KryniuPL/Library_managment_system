@@ -15,13 +15,16 @@
     <h1 class="display-4">Wykaz użytkowników</h1>
 
     <div class="form-group container">
-        <form action="#" th:action="@{allusers/search}" method="post">
+        <form action="#" th:action="@{userssearch}" method="post">
             <p><input type="text" class="form-control" id="phrase" name="phrase" title="Search" placeholder="Wyszukaj..." /></p>
             <p><button class="btn .btn-md btn-primary search-button" name="Search" value="Search" type="Submit" th:text="Wyszukaj"></button></p>
         </form>
     </div>
 
     <br>
+    <p class="text-center font-weight-bold p-3 mb-2 bg-warning text-dark" th:text="${notFoundMessage}"></p>
+    <br>
+
     <table class="table table-bordered" border="1" id="dataTable" cellspacing="0">
         <thead>
         <tr>
