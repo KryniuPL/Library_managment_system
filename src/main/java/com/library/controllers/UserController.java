@@ -187,8 +187,14 @@ public class UserController {
         return "redirect:/profile";
     }
 
+
+    /**
+     * Wyświetla wypożyczone ksiązki dla aktualnie zalogowanego użytkownika
+     *
+     * @return "showBorrowedBooksProfile"
+     */
     @RequestMapping(value = "/showBorrowedBooksProfile")
-    public String showBooksForProfil(Model model)
+    public String showBooksForProfile(Model model)
     {
 
         Authentication authentication= SecurityContextHolder.getContext().getAuthentication();
