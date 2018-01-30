@@ -41,9 +41,6 @@ public class BooksController {
         if (bindingResult.hasErrors()) {
             return "addbook";
         }
-        model.addAttribute("author",book.getAuthor());
-        model.addAttribute("name",book.getName());
-        model.addAttribute("price",book.getStatus());
         Book bookToUpdate = bookRepository.getIdenticalLike(book.getName(),book.getAuthor(),book.getIsbn());
         if(bookToUpdate != null){
             Long quantity = bookRepository.getQuantity(book.getName(),book.getAuthor(),book.getIsbn());

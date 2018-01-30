@@ -1,5 +1,6 @@
 package com.library.controllers;
 
+import com.library.config.LibrarySetupConfig;
 import com.library.model.BookBorrow;
 import com.library.model.User;
 import com.library.repository.BillRepository;
@@ -34,8 +35,6 @@ import java.util.concurrent.TimeUnit;
  */
 @Controller
 public class UserController {
-
-    double fine=0.50;//cena za przetrzymanie za jeden dzień
 
     @Autowired
     private UserService userService;
@@ -131,7 +130,7 @@ public class UserController {
                 long daysToCalculate = TimeUnit.DAYS.convert(difference, TimeUnit.MILLISECONDS);
                 if (difference < 0) {
                     daysToCalculate = Math.abs(daysToCalculate);
-                    calculatedFine = daysToCalculate * fine;
+                    calculatedFine = daysToCalculate * LibrarySetupConfig.FEE;
                     calculatedFines.add(calculatedFine);
                 } else
                 {

@@ -1,5 +1,6 @@
 package com.library.controllers;
 
+import com.library.config.LibrarySetupConfig;
 import com.library.model.Book;
 import com.library.model.BookBorrow;
 import com.library.model.User;
@@ -62,7 +63,7 @@ public class BookBorrowController{
         bookBorrow.setStartDate(date);
         Calendar calendar = new GregorianCalendar(TimeZone.getTimeZone("UTC +2"));
         calendar.setTime(date);
-        calendar.add(Calendar.DATE, 90);
+        calendar.add(Calendar.DATE, LibrarySetupConfig.BORROW_TIME_DAYS);
         date = calendar.getTime();
         bookBorrow.setEndDate(date);
         User user=userService.findByUsername(username);
@@ -75,7 +76,6 @@ public class BookBorrowController{
          */
         bookBorrow.addObserver(user);
 
-        Book book=new Book();
         bookBorrowRepository.save(bookBorrow);
         bookRepository.updateStatus("issued",tmp);
         return "redirect:/allbooks";

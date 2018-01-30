@@ -1,6 +1,8 @@
 package com.library.model;
 
 
+import com.library.config.LibrarySetupConfig;
+
 import javax.persistence.*;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
@@ -68,7 +70,7 @@ public class BookBorrow extends Observable {
     public int compareDate(){
         Date currDate = new Date();
         Long daysBetween = ChronoUnit.DAYS.between(currDate.toInstant(), endDate.toInstant());
-        if (daysBetween <= 7 && daysBetween >= 0)
+        if (daysBetween <= LibrarySetupConfig.BORROW_NOTIFICATION_DAYS && daysBetween >= 0)
             return 2;
         else
             return endDate.compareTo(currDate);
