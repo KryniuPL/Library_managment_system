@@ -15,10 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.TimeZone;
+import java.util.*;
 
 /**
  * Kontroler obsługujący wypożyczenia książek
@@ -51,6 +48,18 @@ public class BookBorrowController{
         model.addAttribute("bookBorrow",bookBorrow);
         return "bookborrowForm";
     }
+
+
+    @RequestMapping(value = "/showBorrowedBooks/{id}", method = RequestMethod.GET)
+    public String showBorrowedBooks(@PathVariable("id") Long id, Model model)
+    {
+        System.out.println(id);
+        String borrowedBooks=bookBorrowRepository.borrowedBooks(id);
+        System.out.println(bookBorrowRepository.borrowedBooks(id));
+        System.out.println(borrowedBooks);
+        return "borrowedBooks";
+    }
+
 
     @RequestMapping(value = "/giveback/{id}", method = RequestMethod.GET)
     public String giveback(@PathVariable("id") Long id, Model model)
