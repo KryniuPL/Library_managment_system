@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -68,17 +69,23 @@ public class BooksController {
     /**
      * Wyszukiwanie książek
      *
-     * return "allbooks" zwraca widok na allbooks
+     * return model zwraca obiekt MAV
      */
-    //Sometimes mapping redirects to: /allbooks/allbooks/search
-    @RequestMapping(value="/allbooks/search", method = RequestMethod.POST)
-    public String searchBooks(@Valid @ModelAttribute("phrase") String phrase, Model model){
-        List<Book> bookList = bookRepository.findPhrase(phrase);
-        if(bookList.size() == 0)
-            return "redirect:/allbooks";
+    @RequestMapping(value="/bookssearch", method = RequestMethod.POST)
+    public ModelAndView searchBooks(@Valid @ModelAttribute("phrase") String phrase, ModelAndView model){
 
-        model.addAttribute("bookList",bookList);
-        return "allbooks";
+        model.setViewName("allbooks");
+
+        String warrning = "Nic nie znaleziono!";
+
+        List<Book> bookList = bookRepository.findPhrase(phrase);
+        if(bookList.size() == 0) {
+            model.addObject("notFoundMessage",warrning);
+            return model;
+        }
+
+        model.addObject("bookList",bookList);
+        return model;
     }
 
     /**

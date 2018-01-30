@@ -92,14 +92,21 @@ public class UserController {
      * @return "allusers" zwraca widok na listę użytkowników
      */
     //Can go wrong with mapping
-    @RequestMapping(value="/allusers/search", method = RequestMethod.POST)
-    public String searchUsers(@Valid @ModelAttribute("phrase") String phrase, Model model){
-        List<User> userList = userRepository.findPhrase(phrase);
-        if(userList.size() == 0)
-            return "redirect:/allusers";
+    @RequestMapping(value="/userssearch", method = RequestMethod.POST)
+    public ModelAndView searchUsers(@Valid @ModelAttribute("phrase") String phrase, ModelAndView model){
+        model.setViewName("allusers");
 
-        model.addAttribute("userList",userList);
-        return "allusers";
+        String warrning = "Nic nie znaleziono!";
+
+
+        List<User> userList = userRepository.findPhrase(phrase);
+        if(userList.size() == 0) {
+            model.addObject("notFoundMessage",warrning);
+            return model;
+        }
+
+        model.addObject("userList",userList);
+        return model;
     }
 
     /**
