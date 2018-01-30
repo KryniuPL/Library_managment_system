@@ -47,6 +47,7 @@
             </div>
             <p><input type="hidden" class="form-control" id="bookname" title="bookname" th:field="*{book.bookID}" /></p>
             <p><button class="btn .btn-md btn-primary " name="Update" value="Update" type="Submit" th:text="Oddaj"></button> <button class="btn .btn-md btn-primary " name="Reset" value="Reset" type="Reset" th:text="Resetuj"></button></p>
+            <a th:href="@{/allbooks}" class="btn btn-md btn-success" type="Submit">Powrót</a>
         </form>
     </div>
 </div>
