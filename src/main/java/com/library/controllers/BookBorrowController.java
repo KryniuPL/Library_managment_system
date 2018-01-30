@@ -52,7 +52,11 @@ public class BookBorrowController{
         return "bookborrowForm";
     }
 
-
+    /**
+     * Wyświetlenie wypożyczonych książek przez użytkownika wybranego z listy
+     *
+     * @return "borrowedBooks" zwraca mapowanie na widok
+     */
     @RequestMapping(value = "/showBorrowedBooks/{id}", method = RequestMethod.GET)
     public String showBorrowedBooks(@PathVariable("id") Long id, Model model)
     {
@@ -76,7 +80,11 @@ public class BookBorrowController{
         return "borrowedBooks";
     }
 
-
+    /**
+     * Wyświetlenie widoku umożliwiającego oddanie ksiązki
+     *
+     * @return "borrowedBooks" zwraca mapowanie na widok
+     */
     @RequestMapping(value = "/giveback/{id}", method = RequestMethod.GET)
     public String giveback(@PathVariable("id") Long id, Model model)
     {
@@ -88,6 +96,11 @@ public class BookBorrowController{
         return "givebackForm";
     }
 
+    /**
+     * Oddanie książki
+     *
+     * @return "borrowedBooks" zwraca mapowanie na widok
+     */
     @RequestMapping(value = "/giveback/save", method = RequestMethod.POST)
     public String saveGiveBack(@Valid @ModelAttribute("bookborrow") BookBorrow bookBorrow, @Valid @ModelAttribute("username")String username, Model model)
     {
