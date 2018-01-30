@@ -67,6 +67,12 @@ public class BookBorrow extends Observable {
         this.endDate = endDate;
     }
 
+
+    /**
+     * Porównuje datę bierzącą z datą oddania i odpowiednio ustawia tablicę status
+     *
+     * @return status - tablica z wynikiem powrównania, różnicą dni i obiektem książki
+     */
     public Object[] compareDate(){
         Object[] status = new Object[3];
         Date currDate = new Date();
@@ -82,6 +88,9 @@ public class BookBorrow extends Observable {
             return status;
     }
 
+    /**
+     * Sprawdzenie wyniku porównania i wywołanie changeUpdate
+     */
     public void checkDate(){
         Object[] result = compareDate();
         if ((int)result[LibrarySetupConfig.COMPARISON_RESULT] == LibrarySetupConfig.TERM_REACHED
@@ -89,6 +98,11 @@ public class BookBorrow extends Observable {
             changeUpdate(result);
     }
 
+    /**
+     * Zamiana stanu Observable i powiadomienie obserwujących
+     *
+     * @param status tablica z wynikiem powrównania, różnicą dni i obiektem książki
+     */
     private void changeUpdate(Object status[]){
         setChanged();
         notifyObservers(status);

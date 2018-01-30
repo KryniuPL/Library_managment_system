@@ -8,12 +8,19 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+/**
+ * Wykonuje zaplanowane metody na obiektach User
+ */
+
 @Component
 public class UserScheduler {
 
     @Autowired
     UserRepository userRepository;
 
+    /**
+     * Raz na dobę usuwa nieprzeczytane notyfikacje żeby system mógł je prawidłowo skorygować
+     */
     @Scheduled(cron = "0 0 0 ? * * ")
     public void removeNotifications(){
         List<User> userList = userRepository.findAll();
