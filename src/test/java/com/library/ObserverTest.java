@@ -9,6 +9,10 @@ import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
+
+/**
+ * Won't pass since update method on Observer changed
+ */
 public class ObserverTest
 {
     BookBorrow bookBorrow = new BookBorrow();

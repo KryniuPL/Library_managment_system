@@ -67,22 +67,29 @@ public class BookBorrow extends Observable {
         this.endDate = endDate;
     }
 
-    public int compareDate(){
+    public Object[] compareDate(){
+        Object[] status = new Object[3];
         Date currDate = new Date();
         Long daysBetween = ChronoUnit.DAYS.between(currDate.toInstant(), endDate.toInstant());
-        if (daysBetween <= LibrarySetupConfig.BORROW_NOTIFICATION_DAYS && daysBetween >= 0)
-            return 2;
+        status[LibrarySetupConfig.DAYS_BETWEEN] = daysBetween.intValue();
+        status[LibrarySetupConfig.OBJECT] = this.getBook();
+        if (daysBetween <= LibrarySetupConfig.BORROW_NOTIFICATION_DAYS && daysBetween >= 0) {
+            status[LibrarySetupConfig.COMPARISON_RESULT] = LibrarySetupConfig.TERM_SOON;
+            return status;
+        }
         else
-            return endDate.compareTo(currDate);
+            status[LibrarySetupConfig.COMPARISON_RESULT] = endDate.compareTo(currDate);
+            return status;
     }
 
     public void checkDate(){
-        int result = compareDate();
-        if (result == -1 || result == 2)
+        Object[] result = compareDate();
+        if ((int)result[LibrarySetupConfig.COMPARISON_RESULT] == LibrarySetupConfig.TERM_REACHED
+                || (int) result[LibrarySetupConfig.COMPARISON_RESULT] == LibrarySetupConfig.TERM_SOON)
             changeUpdate(result);
     }
 
-    private void changeUpdate(int status){
+    private void changeUpdate(Object status[]){
         setChanged();
         notifyObservers(status);
     }

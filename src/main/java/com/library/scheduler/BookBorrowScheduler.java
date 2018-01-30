@@ -31,5 +31,4 @@ public class BookBorrowScheduler {
         for (BookBorrow bookBorrow: bookBorrowList)
             bookBorrow.checkDate();
     }
-
 }

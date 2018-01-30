@@ -1,5 +1,6 @@
 package com.library.model;
 
+import com.library.config.LibrarySetupConfig;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -27,8 +28,19 @@ public class User implements Observer {
     private int active;
     private Set<Role> roles = new HashSet<>(0);
 
-    private String note;
+    private Stack<String> notes = new Stack<>();
 
+    public String getNote() {
+        return notes.pop();
+    }
+
+    public void setNote(String note) {
+        this.notes.push(note);
+    }
+
+    public void clearNotifications(){
+        this.notes = new Stack<>();
+    }
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public Long getUserID() {
@@ -96,28 +108,23 @@ public class User implements Observer {
         this.roles = roles;
     }
 
-    public String getNote() {
-        return note;
-    }
-
-    public void setNote(String note) {
-        this.note = note;
-    }
 
     /**
-     * Obserwator PART II
+     * Ustawia notkę użytkownika w odpowiedzi na zmianę statusu BookBorrow
      *
-     * Myśleć co chemy z tym zrobić :)
-     *
-     * @param o
-     * @param arg
+     * @param o obiekt Observable
+     * @param arg argument przekazywany przez notify Observable
      */
     @Override
     public void update(Observable o, Object arg) {
-        if ((int)arg == -1) //Termin przekroczony
-            this.setNote("Termin przekroczony");
+        Object[] status = (Object[])arg;
+        Book book = (Book)status[LibrarySetupConfig.OBJECT];
+        if ((int)status[LibrarySetupConfig.COMPARISON_RESULT] == LibrarySetupConfig.TERM_REACHED)
+            this.setNote("Termin przekroczony o " + Math.abs((int)status[LibrarySetupConfig.DAYS_BETWEEN]) + "dni!\n" +
+                    "Dotyczy: " + book.getName() + " " + book.getAuthor());
         else
-            this.setNote("Tydzień lub mniej do końca"); //Tydzień lub mniej do końca
+            this.setNote("Zostało " + Math.abs((int)status[LibrarySetupConfig.DAYS_BETWEEN]) + "dni!\n" +
+                    "Dotyczy: " + book.getName() + " " + book.getAuthor());
     }
 }
 

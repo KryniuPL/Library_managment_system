@@ -23,7 +23,22 @@
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <span th:utext="${username}"></span>
+
+                <div class="container">
+                    <div class="row">
+
+                        <div class="btn-group ">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                Powiadomienia (<span th:text="${count}"></span>) <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li class="list-group-item text-danger" th:each="note : ${word}" th:text="${note}"></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
+
             <div class="panel-body">
                 <div sec:authorize="hasAuthority('ADMIN')">
                     <form th:action="@{/addbook}" method="get">

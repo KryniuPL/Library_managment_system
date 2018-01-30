@@ -21,6 +21,7 @@ import javax.validation.Valid;
 
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
@@ -101,8 +102,21 @@ public class LoginController {
         Authentication authentication= SecurityContextHolder.getContext().getAuthentication();
         User user=userService.findByUsername(authentication.getName());
 
-            modelAndView.addObject("username", "Witaj" + " " + user.getFirstname() + "" + user.getSurname() + " (" + user.getEmail() + ")");
-            modelAndView.setViewName("/home");
-            return modelAndView;
+        ArrayList<String> notes = new ArrayList<>();
+
+        String note;
+        while((note = user.getNote()) != null)
+            notes.add(note);
+
+        modelAndView.addObject("count",notes.size());
+
+        if(notes.size() == 0)
+            notes.add("Brak nowych powiadomień!");
+
+        modelAndView.addObject("word",notes);
+
+        modelAndView.addObject("username", "Witaj" + " " + user.getFirstname() + "" + user.getSurname() + " (" + user.getEmail() + ")");
+        modelAndView.setViewName("/home");
+        return modelAndView;
     }
 }

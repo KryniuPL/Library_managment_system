@@ -1,5 +1,6 @@
 package com.library;
 
+import com.library.config.LibrarySetupConfig;
 import com.library.model.BookBorrow;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -25,7 +26,7 @@ public class BookBorrowTest {
         System.out.println("Data oddania: " + bookBorrow.getEndDate());
         System.out.println(ChronoUnit.DAYS.between(currDate.toInstant(), bookBorrow.getEndDate().toInstant()));
 
-        Assert.assertEquals(bookBorrow.compareDate(),-1);
+        Assert.assertEquals(bookBorrow.compareDate()[LibrarySetupConfig.COMPARISON_RESULT],-1);
 
     }
 
@@ -40,7 +41,7 @@ public class BookBorrowTest {
         System.out.println("Data oddania: " + bookBorrow.getEndDate());
         System.out.println(ChronoUnit.DAYS.between(currDate.toInstant(), bookBorrow.getEndDate().toInstant()));
 
-        Assert.assertEquals(bookBorrow.compareDate(),1);
+        Assert.assertEquals(bookBorrow.compareDate()[LibrarySetupConfig.COMPARISON_RESULT],1);
 
     }
 
@@ -55,7 +56,7 @@ public class BookBorrowTest {
         System.out.println("Data oddania: " + bookBorrow.getEndDate());
         System.out.println(ChronoUnit.DAYS.between(currDate.toInstant(), bookBorrow.getEndDate().toInstant()));
 
-        Assert.assertEquals(bookBorrow.compareDate(),2);
+        Assert.assertEquals(bookBorrow.compareDate()[LibrarySetupConfig.COMPARISON_RESULT],2);
 
 
     }

@@ -1,5 +1,8 @@
 package com.library.controllers;
 
+import com.library.repository.UserRepository;
+import com.library.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -8,6 +11,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 public class HomeController {
+
+    @Autowired
+    UserService userService;
+
+    @Autowired
+    UserRepository userRepository;
 
     /**
      * Zwraca widok na katalog startowy
@@ -25,5 +34,5 @@ public class HomeController {
      * @return "home"
      */
     @RequestMapping(value = "/home")
-    public String home(){return "home";}
+    public String home(){ return "home";}
 }
