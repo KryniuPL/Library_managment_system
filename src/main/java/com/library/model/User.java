@@ -120,14 +120,19 @@ public class User implements Observer {
      */
     @Override
     public void update(Observable o, Object arg) {
+        String msg;
         Object[] status = (Object[])arg;
         Book book = (Book)status[LibrarySetupConfig.OBJECT];
-        if ((int)status[LibrarySetupConfig.COMPARISON_RESULT] == LibrarySetupConfig.TERM_REACHED)
-            this.setNote("Termin przekroczony o " + Math.abs((int)status[LibrarySetupConfig.DAYS_BETWEEN]) + "dni!\n" +
-                    "Dotyczy: " + book.getName() + " " + book.getAuthor());
-        else
-            this.setNote("Zostało " + Math.abs((int)status[LibrarySetupConfig.DAYS_BETWEEN]) + "dni!\n" +
-                    "Dotyczy: " + book.getName() + " " + book.getAuthor());
+        if ((int)status[LibrarySetupConfig.COMPARISON_RESULT] == LibrarySetupConfig.TERM_REACHED) {
+            msg = "Termin przekroczony o " + Math.abs((int) status[LibrarySetupConfig.DAYS_BETWEEN]) + "dni!\n" +
+                    "Dotyczy: " + book.getName() + " " + book.getAuthor();
+        }
+        else {
+            msg ="Zostało " + Math.abs((int) status[LibrarySetupConfig.DAYS_BETWEEN]) + " dni!\n" +
+                    "Dotyczy: " + book.getName() + " " + book.getAuthor();
+        }
+
+        this.setNote(msg);
     }
 }
 

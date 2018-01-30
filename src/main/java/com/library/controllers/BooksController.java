@@ -119,6 +119,7 @@ public class BooksController {
     public String saveUpdateBook(@Valid @ModelAttribute("book") Book book, Model model){
         model.addAttribute("author",book.getAuthor());
         model.addAttribute("name",book.getName());
+        model.addAttribute("quantity",book.getQuantity());
         model.addAttribute("isbn",book.getIsbn());
         bookRepository.update(book.getAuthor(),book.getName(),book.getQuantity(),book.getIsbn(),book.getBookID());
         return "redirect:/allbooks";
