@@ -61,6 +61,14 @@
                 </div>
                 <div sec:authorize="hasAuthority('USER')">
                     Ta treść jest dostępna tylko dla <b>użytkowników</b>.
+                    <form th:action="@{/allbooks.html}" method="get">
+                        <button class="btn btn-md btn-default btn-block" type="Submit">Księgozbiór</button>
+                    </form>
+                    <br>
+                    <form th:action="@{/profile}" method="get">
+                        <button class="btn btn-md btn-default btn-block" type="Submit">Profil</button>
+                    </form>
+                    <br>
                 </div>
             </div>
             <p class="admin-message-text text-center" th:utext="${adminMessage}"></p>
