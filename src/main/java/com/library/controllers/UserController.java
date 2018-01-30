@@ -5,6 +5,7 @@ import com.library.model.BookBorrow;
 import com.library.model.User;
 import com.library.repository.BillRepository;
 import com.library.repository.BookBorrowRepository;
+import com.library.repository.BookRepository;
 import com.library.repository.UserRepository;
 import com.library.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +48,14 @@ public class UserController {
 
     @Autowired
     private BillRepository billRepository;
+
+
+    @Autowired
+    private BookBorrowRepository bookBorrowRepository;
+
+
+    @Autowired
+    private BookRepository bookRepository;
 
     /**
      * Lista użytkowników
@@ -174,4 +183,31 @@ public class UserController {
         userRepository.update(user.getFirstname(),user.getSurname(),user.getUsername(),user.getPassword(),user.getEmail(),user.getUserID());
         return "redirect:/profile";
     }
+
+    @RequestMapping(value = "/showBorrowedBooksProfile")
+    public String showBooksForProfil(Model model)
+    {
+
+        Authentication authentication= SecurityContextHolder.getContext().getAuthentication();
+        User username=userService.findByUsername(authentication.getName());
+        Long id=username.getUserID();
+
+        System.out.println(id);
+        User user1=userRepository.findByUserID(id);
+
+
+        ArrayList<String> notes=bookBorrowRepository.bookNames(id);
+        ArrayList<String> authors=bookBorrowRepository.bookAuthors(id);
+        List<BookBorrow> borrowedbooks = bookBorrowRepository.findByUser(user1);
+        model.addAttribute("BorrowedBooks",borrowedbooks);
+        model.addAttribute("names",notes);
+        model.addAttribute("authors",authors);
+        System.out.println(authors);
+        System.out.println(notes);
+
+        return "showBorrowedBooksProfile";
+    }
+
+
+
 }

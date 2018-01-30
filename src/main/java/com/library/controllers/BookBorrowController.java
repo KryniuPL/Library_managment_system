@@ -6,6 +6,7 @@ import com.library.model.BookBorrow;
 import com.library.model.User;
 import com.library.repository.BookBorrowRepository;
 import com.library.repository.BookRepository;
+import com.library.repository.UserRepository;
 import com.library.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,6 +35,8 @@ public class BookBorrowController{
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private UserRepository userRepository;
     /**
      * Aktualizacja danych książki
      *
@@ -53,10 +56,19 @@ public class BookBorrowController{
     @RequestMapping(value = "/showBorrowedBooks/{id}", method = RequestMethod.GET)
     public String showBorrowedBooks(@PathVariable("id") Long id, Model model)
     {
+
         System.out.println(id);
-        String borrowedBooks=bookBorrowRepository.borrowedBooks(id);
-        System.out.println(bookBorrowRepository.borrowedBooks(id));
-        System.out.println(borrowedBooks);
+        User user1=userRepository.findByUserID(id);
+
+
+        ArrayList<String> notes=bookBorrowRepository.bookNames(id);
+        ArrayList<String> authors=bookBorrowRepository.bookAuthors(id);
+        List<BookBorrow> borrowedbooks = bookBorrowRepository.findByUser(user1);
+        model.addAttribute("BorrowedBooks",borrowedbooks);
+        model.addAttribute("names",notes);
+        model.addAttribute("authors",authors);
+        System.out.println(authors);
+        System.out.println(notes);
         return "borrowedBooks";
     }
 
