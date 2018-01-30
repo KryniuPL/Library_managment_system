@@ -9,6 +9,9 @@ import org.springframework.stereotype.Repository;
  * Tworzy repozytorium danych z klasy Role
  */
 public interface RoleRepository extends JpaRepository<Role,Integer> {
+    /**
+     * Zapytanie zwracające rolę użytkownika
+     */
     Role findByName(String name);
 
 }

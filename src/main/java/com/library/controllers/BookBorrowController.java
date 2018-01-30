@@ -99,7 +99,7 @@ public class BookBorrowController{
     /**
      * Oddanie książki
      *
-     * @return "borrowedBooks" zwraca mapowanie na widok
+     * @return "allbooks" zwraca mapowanie na widok
      */
     @RequestMapping(value = "/giveback/save", method = RequestMethod.POST)
     public String saveGiveBack(@Valid @ModelAttribute("bookborrow") BookBorrow bookBorrow, @Valid @ModelAttribute("username")String username, Model model)

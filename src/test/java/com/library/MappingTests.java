@@ -28,13 +28,7 @@ public class MappingTests {
         mockMvc.perform(get("/register")).andExpect(view().name("registerForm"));
     }
 
-    @Test
-    public void testLoginPage() throws Exception
-    {
-        LoginController controller=new LoginController();
-        MockMvc mockMvc=standaloneSetup(controller).build();
-        mockMvc.perform(get("/login")).andExpect(view().name("loginForm"));
-    }
+
 
     /*
      @Test

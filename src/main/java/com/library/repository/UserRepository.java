@@ -14,6 +14,9 @@ import java.util.List;
  */
 public interface UserRepository extends JpaRepository<User, Long>{
 
+    /**
+     * Zapytanie zwracające obiekt User po pobraniu nazwy użytkownika
+     */
     User findByUsername(String username);
 
     User findByUserID(Long id);
@@ -38,6 +41,9 @@ public interface UserRepository extends JpaRepository<User, Long>{
     int books(String username);
 
 
+    /**
+     * Zapytanie zwracające nazwy wypozyczonych ksiazek przez użytkownika
+     */
     @Query(value = "SELECT Book.name FROM BookBorrow,User,Book WHERE BookBorrow.book_bookID=Book.bookID AND BookBorrow.user_userID=User.userID AND User.username=?1",nativeQuery =true)
     List<String> userBooks(String username);
 }
