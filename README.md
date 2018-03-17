@@ -29,4 +29,4 @@ PATH(src/main/resources/application.properties)
 
 -after that insert records from setup.sql  PATH(src/main/resources/setup.sql)
 
-Project deployed on 80.211.208.89
+
